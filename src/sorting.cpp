@@ -55,43 +55,67 @@ void sorting::insertion() { //vector <string> arrstr, int k
     cout << endl;
 
     cout << "done insertion" << endl;
-    cout << dataSet[2];
 }
 
-/*void sorting::insertion(vector <string> arrstr, int k) { //vector <string> arrstr, int k
-    cout << "in insertion" << endl;
-    int k = arrstr.size();
-    int i, j;
-    string key="";
-    for (i = 1; i < k; i++)
-    {
-        key = arrstr[i];
-        j = i - 1;
+//---------------
 
-        while (j >= 0 && arrstr[j] > key)
-        {
-            arrstr[j + 1] = arrstr[j];
-            j = j - 1;
+void sorting::merge(int array[], int const left, int const mid, int const right){
+    auto const subArrayOne = mid - left + 1;
+    auto const subArrayTwo = right - mid;
+
+    auto *leftArray = new int[subArrayOne],
+            *rightArray = new int[subArrayTwo];
+
+    for (auto i = 0; i < subArrayOne; i++)
+        leftArray[i] = array[left + i];
+    for (auto j = 0; j < subArrayTwo; j++)
+        rightArray[j] = array[mid + 1 + j];
+
+    auto indexOfSubArrayOne = 0,
+    indexOfSubArrayTwo = 0;
+    int indexOfMergedArray = left;
+
+    while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
+        if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
+            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+            indexOfSubArrayOne++;
         }
-        arrstr[j + 1] = key;
+        else {
+            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+            indexOfSubArrayTwo++;
+        }
+        indexOfMergedArray++;
     }
 
-    int z;
-    for (z = 0; z < k; z++)
-        cout << dataSet[z] << " ";
-    cout << endl;
+    while (indexOfSubArrayOne < subArrayOne) {
+        array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+        indexOfSubArrayOne++;
+        indexOfMergedArray++;
+    }
 
-    cout << "done insertion" << endl;
-
-}*/
-
-
-/*
-void sorting::printArray(vector <string> arr, int n) {
-    int i;
-    for (i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+    while (indexOfSubArrayTwo < subArrayTwo) {
+        array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+        indexOfSubArrayTwo++;
+        indexOfMergedArray++;
+    }
 }
-*/
+
+void sorting::mergeSort(int array[], int const begin, int const end)
+{
+    if (begin >= end)
+        return; // Returns recursively
+
+    auto mid = begin + (end - begin) / 2;
+    mergeSort(array, begin, mid);
+    mergeSort(array, mid + 1, end);
+    merge(array, begin, mid, end);
+}
+
+
+void sorting::printArray(int A[], int size)
+{
+    for (auto i = 0; i < size; i++)
+        cout << A[i] << " ";
+}
+
 

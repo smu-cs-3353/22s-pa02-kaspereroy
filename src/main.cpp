@@ -8,7 +8,7 @@ int main(){
 
 
     //The sorting algorithms that you will implement are:
-    //insertion sort
+    //insertion sort -- done
     //randomized quicksort
     //merge sort
     //shellsort
@@ -40,13 +40,22 @@ int main(){
 
 
 sorting test;
-test.readFile("int-60.csv");
-test.insertion();
+//test.readFile("int-6.csv");
+//test.insertion();
 //test.insertion(vectstr, vectstr.size());
 //test.printArray(vectstr, vectstr.size());
 
 
+    int arr[] = { 12, 11, 13, 5, 6, 7 };
+    auto arr_size = sizeof(arr) / sizeof(arr[0]);
 
+    cout << "Given array is \n";
+    test.printArray(arr, arr_size);
+
+    test.mergeSort(arr, 0, arr_size - 1);
+
+    cout << "\nSorted array is \n";
+    test.printArray(arr, arr_size);
 
     return 0;
 
