@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include "sorting.h"
 using namespace std;
 int main(){
     cout << "Hello world" << endl;
@@ -20,5 +23,29 @@ int main(){
 //            generate a randomized dataset of size s with 20% duplicates (in other words, if you removed all the elements that appear somewhere else in the array, 20% of the total elements would be removed)
 //    generate a randomized dataset of size s with 40% duplicates (in other words, if you removed all the elements that appear somewhere else in the array, 40% of the total elements would be removed)
 
+    vector <string> vectstr = {"3","1","4","2","6","5","18"};
+    //string arrstr[] = {"b","a","d","e","c","f"};
+    //string arrstr[] = {"3","1","4","2","6","5"};
+    //int arr[] = { 12, 11, 13, 5, 6 };
+    //int n = sizeof(arr) / sizeof(arr[0]);
+/*
+    int k = sizeof(arrstr) / sizeof(arrstr[0]);
+
+    sorting test;
+    test.insertion(arrstr, k);
+    test.printArray(arrstr, k);*/
+
+
+
+sorting test;
+test.readFile("int-60.csv");
+test.insertion();
+//test.insertion(vectstr, vectstr.size());
+//test.printArray(vectstr, vectstr.size());
+
+
+
+
+    return 0;
 
 }

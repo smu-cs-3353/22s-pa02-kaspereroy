@@ -4,4 +4,4 @@ project(22s_pa02_kaspereroy)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(22s_pa02_kaspereroy
-        src/main.cpp)
+        src/main.cpp src/sorting.cpp src/sorting.h)
