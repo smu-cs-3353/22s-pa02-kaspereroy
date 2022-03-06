@@ -13,7 +13,7 @@ int main(){
     //merge sort -- done
     //shellsort -- done
     //introsort
-    //timsort
+    //timsort -- 
 
     //Also need to construct separate categories of data sets: integer based, string based
     // Generate at least 6 dataset sizes.  More precisely:
@@ -30,7 +30,7 @@ int main(){
     sorting test;
     test.readFile("int-60.csv");
     //test.merge();
-    test.shellSort();
+    test.timSort();
 
 
  return 0;

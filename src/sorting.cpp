@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <math.h>
 using namespace std;
 
 void sorting::readFile(string fileName) {
@@ -113,7 +114,7 @@ void sorting::MergeSortV( int s, int e) {
 
 //---------------
 
-int sorting::shellSort()
+void sorting::shellSort()
 {
     int n = dataSet.size();
 
@@ -136,4 +137,52 @@ int sorting::shellSort()
 
 }
 
+//------
+
+void sorting :: inst(int left, int right)
+{
+    for (int i = left + 1; i <= right; i++)
+    {
+        int temp = stoi(dataSet[i]);
+        int j = i - 1;
+        while (j >= left && stoi(dataSet[j]) > temp)
+        {
+            dataSet[j+1] = dataSet[j];
+            j--;
+        }
+        dataSet[j+1] = to_string(temp);
+    }
+}
+
+
+void sorting::timSort()
+{
+    int n = dataSet.size();
+    int RUN = pow(dataSet.size(), 2);
+
+    // Sort individual subarrays of size RUN
+    for (int i = 0; i < n; i+=RUN)
+        inst(i, min((i+RUN-1),
+                                  (n-1)));
+
+    for (int size = RUN; size < n;
+         size = 2*size)
+    {
+
+        for (int left = 0; left < n;
+             left += 2*size)
+        {
+
+            int mid = left + size - 1;
+            int right = min((left + 2*size - 1),
+                            (n-1));
+
+            if(mid < right)
+                MergeSortedIntervals(left, mid, right);
+        }
+    }
+
+    for (int i=0; i<n; i++)
+        cout << dataSet[i] << " ";
+}
 

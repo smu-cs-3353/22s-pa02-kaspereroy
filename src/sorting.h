@@ -22,7 +22,11 @@ public:
     void MergeSortedIntervals( int s, int m, int e);
     void MergeSortV( int s, int e);
 
-    int shellSort();
+    void shellSort();
+
+    void timSort();
+
+    void  inst(int left, int right);
 
 };
 
