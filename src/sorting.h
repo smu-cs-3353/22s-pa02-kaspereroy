@@ -16,13 +16,13 @@ private:
 public:
     void readFile(string fileName);
     void insertion();
-    void merge(int const left, int const mid, int const right);
-    void mergeSortCall(vector <string> set, int const begin, int const end);
-    void mergeSort();
-    void printArray(int A[], int size);
 
-    //void insertion(vector <string> arrstr, int k);
-    //void printArray(vector <string> arr, int n);
+    void merge();
+    void MergeSortedIntervals( int s, int m, int e);
+    void MergeSortV( int s, int e);
+
+
+
 };
 
 

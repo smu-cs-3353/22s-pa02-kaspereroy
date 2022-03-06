@@ -39,13 +39,12 @@ int main(){
 
 
 
-sorting test;
-test.readFile("int-6.csv");
-test.mergeSort();
+    sorting test;
+    test.readFile("int-60.csv");
+    test.merge();
 //test.insertion();
 //test.insertion(vectstr, vectstr.size());
 //test.printArray(vectstr, vectstr.size());
-
 
  /*   int arr[] = { 12, 11, 13, 5, 6, 7 };
     auto arr_size = sizeof(arr) / sizeof(arr[0]);
@@ -57,7 +56,13 @@ test.mergeSort();
 
     cout << "\nSorted array is \n";
     test.printArray(arr, arr_size);*/
+/* vector <int> testing = {1,4,6,2,5,3};
 
-    return 0;
+ test.MergeSortV(testing, 0, testing.size()-1);
+    for (int i = 0; i < testing.size(); ++i) {
+        cout << testing[i] << ' ';
+    }*/
+
+ return 0;
 
 }
