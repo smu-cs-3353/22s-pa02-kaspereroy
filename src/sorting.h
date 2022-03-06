@@ -27,6 +27,10 @@ public:
     void timSort();
 
     void  inst(int left, int right);
+    void randQuickSortCall();
+    void randQuickSort(vector<string>, int, int);
+    int partition(vector<string>, int, int);
+    int randomPartition(vector<string> v, int low, int high);
 
 };
 

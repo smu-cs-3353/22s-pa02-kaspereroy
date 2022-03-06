@@ -1,3 +1,4 @@
+//Research on QuickSort function done on GeeksForGeeks.com
 #include <algorithm>
 //
 // Created by Hazel Eroy on 3/2/22.
@@ -187,3 +188,36 @@ void sorting::timSort()
         cout << dataSet[i] << " ";
 }
 
+void sorting::randQuickSort(vector <string> v, int low, int high){
+    if(low<high){
+        int pi = randomPartition(v, low, high);
+        randQuickSort(v, low, pi-1);
+        randQuickSort(v, pi+1, high);
+    }
+
+}
+int sorting::partition(vector <string> v,int low, int high ){
+    int pivot= stoi(v[high]);
+    int i = low-1;
+
+    for (int j = low; j<=high-1; j++){
+        if(stoi(v[j])<=pivot){
+            i++;
+            swap(v[i], v[j]);
+        }
+    }
+    swap(v[i+1], v[high]);
+    return (i+1);
+}
+
+int sorting::randomPartition(vector <string> v, int low, int high){
+    srand(time(NULL));
+    int random = low + rand() % (high - low);
+    swap(v[random], v[high]);
+    return partition(v, low, high);
+}
+
+void sorting::randQuickSortCall() {
+    randQuickSort(dataSet, 0, dataSet.size()-1);
+
+}

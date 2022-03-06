@@ -31,6 +31,7 @@ int main(){
     test.readFile("int-60.csv");
     //test.merge();
     test.timSort();
+    test.randQuickSortCall();
 
 
  return 0;
