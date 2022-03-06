@@ -10,8 +10,8 @@ int main(){
     //The sorting algorithms that you will implement are:
     //insertion sort -- done
     //randomized quicksort
-    //merge sort
-    //shellsort
+    //merge sort -- done
+    //shellsort -- done
     //introsort
     //timsort
 
@@ -26,42 +26,12 @@ int main(){
 //    generate a randomized dataset of size s with 40% duplicates (in other words, if you removed all the elements that appear somewhere else in the array, 40% of the total elements would be removed)
 
     vector <string> vectstr = {"3","1","4","2","6","5","18"};
-    //string arrstr[] = {"b","a","d","e","c","f"};
-    //string arrstr[] = {"3","1","4","2","6","5"};
-    //int arr[] = { 12, 11, 13, 5, 6 };
-    //int n = sizeof(arr) / sizeof(arr[0]);
-/*
-    int k = sizeof(arrstr) / sizeof(arrstr[0]);
-
-    sorting test;
-    test.insertion(arrstr, k);
-    test.printArray(arrstr, k);*/
-
-
 
     sorting test;
     test.readFile("int-60.csv");
-    test.merge();
-//test.insertion();
-//test.insertion(vectstr, vectstr.size());
-//test.printArray(vectstr, vectstr.size());
+    //test.merge();
+    test.shellSort();
 
- /*   int arr[] = { 12, 11, 13, 5, 6, 7 };
-    auto arr_size = sizeof(arr) / sizeof(arr[0]);
-
-    cout << "Given array is \n";
-    test.printArray(arr, arr_size);
-
-    test.mergeSort(arr, 0, arr_size - 1);
-
-    cout << "\nSorted array is \n";
-    test.printArray(arr, arr_size);*/
-/* vector <int> testing = {1,4,6,2,5,3};
-
- test.MergeSortV(testing, 0, testing.size()-1);
-    for (int i = 0; i < testing.size(); ++i) {
-        cout << testing[i] << ' ';
-    }*/
 
  return 0;
 

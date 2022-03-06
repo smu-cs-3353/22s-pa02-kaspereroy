@@ -23,10 +23,6 @@ void sorting::readFile(string fileName) {
             dataSet.push_back(line);
         }
     }
-    /* int z;
-     for (z = 0; z < dataSet.size(); z++)
-         cout << dataSet[z] << " ";
-     cout << endl;*/
 
     cout << "file read" << endl;
 };
@@ -59,13 +55,11 @@ void sorting::insertion() { //vector <string> arrstr, int k
 
 //---------------
 
-//-----
 void sorting::merge(){
     MergeSortV( 0, dataSet.size()-1);
     for (int i = 0; i < dataSet.size(); ++i) {
         cout << dataSet[i] << ' ';
     }
-    cout << "done" << endl;
 }
 
 void sorting::MergeSortedIntervals(int s, int m, int e) {
@@ -116,3 +110,30 @@ void sorting::MergeSortV( int s, int e) {
     }
 
 }
+
+//---------------
+
+int sorting::shellSort()
+{
+    int n = dataSet.size();
+
+    for (int gap = n/2; gap > 0; gap /= 2)
+    {
+        for (int i = gap; i < n; i += 1)
+        {
+            int temp = stoi(dataSet[i]);
+
+            int j;
+            for (j = i; j >= gap && stoi(dataSet[j - gap]) > temp; j -= gap)
+                dataSet[j] = dataSet[j - gap];
+
+            dataSet[j] = to_string(temp);
+        }
+    }
+
+    for (int i=0; i<n; i++)
+        cout << dataSet[i] << " ";
+
+}
+
+

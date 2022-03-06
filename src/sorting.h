@@ -15,13 +15,14 @@ private:
     vector <string> dataSet;
 public:
     void readFile(string fileName);
+
     void insertion();
 
     void merge();
     void MergeSortedIntervals( int s, int m, int e);
     void MergeSortV( int s, int e);
 
-
+    int shellSort();
 
 };
 
