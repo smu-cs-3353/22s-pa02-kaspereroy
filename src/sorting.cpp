@@ -154,6 +154,7 @@ void sorting :: inst(int left, int right)
     }
 }
 
+//----
 
 void sorting::timSort()
 {
