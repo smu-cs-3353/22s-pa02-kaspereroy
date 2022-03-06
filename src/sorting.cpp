@@ -59,17 +59,19 @@ void sorting::insertion() { //vector <string> arrstr, int k
 
 //---------------
 
-void sorting::merge(int array[], int const left, int const mid, int const right){
+
+void sorting::merge(int const left, int const mid, int const right){
+
     auto const subArrayOne = mid - left + 1;
     auto const subArrayTwo = right - mid;
 
-    auto *leftArray = new int[subArrayOne],
-            *rightArray = new int[subArrayTwo];
+    auto *leftArray = new string[subArrayOne];
+    auto *rightArray = new string[subArrayTwo];
 
     for (auto i = 0; i < subArrayOne; i++)
-        leftArray[i] = array[left + i];
+        leftArray[i] = dataSet[left + i];
     for (auto j = 0; j < subArrayTwo; j++)
-        rightArray[j] = array[mid + 1 + j];
+        rightArray[j] = dataSet[mid + 1 + j];
 
     auto indexOfSubArrayOne = 0,
     indexOfSubArrayTwo = 0;
@@ -77,38 +79,42 @@ void sorting::merge(int array[], int const left, int const mid, int const right)
 
     while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
         if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
-            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+            dataSet[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
             indexOfSubArrayOne++;
         }
         else {
-            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+            dataSet[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
             indexOfSubArrayTwo++;
         }
         indexOfMergedArray++;
     }
 
     while (indexOfSubArrayOne < subArrayOne) {
-        array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+        dataSet[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
         indexOfSubArrayOne++;
         indexOfMergedArray++;
     }
 
     while (indexOfSubArrayTwo < subArrayTwo) {
-        array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+        dataSet[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
         indexOfSubArrayTwo++;
         indexOfMergedArray++;
     }
 }
 
-void sorting::mergeSort(int array[], int const begin, int const end)
+//test.mergeSort(arr, 0, arr_size - 1)
+
+void sorting::mergeSortCall(vector <string> set, int const begin1, int const end1)  //int array[], int const begin, int const end
 {
+    int const begin = 0;
+    int const end = dataSet.size()-1;
     if (begin >= end)
         return; // Returns recursively
 
     auto mid = begin + (end - begin) / 2;
-    mergeSort(array, begin, mid);
-    mergeSort(array, mid + 1, end);
-    merge(array, begin, mid, end);
+    mergeSortCall(set,begin, mid);
+    mergeSortCall(set,mid + 1, end);
+    merge(begin, mid, end);
 }
 
 
@@ -116,6 +122,14 @@ void sorting::printArray(int A[], int size)
 {
     for (auto i = 0; i < size; i++)
         cout << A[i] << " ";
+}
+
+void sorting::mergeSort() {
+    mergeSortCall(dataSet,1, dataSet.size() - 1);
+   /* int z;
+    for (z = 0; z < dataSet.size(); z++)
+        cout << dataSet[z] << " ";
+    cout << endl;*/
 }
 
 

@@ -16,8 +16,9 @@ private:
 public:
     void readFile(string fileName);
     void insertion();
-    void merge(int array[], int const left, int const mid, int const right);
-    void mergeSort(int array[], int const begin, int const end);
+    void merge(int const left, int const mid, int const right);
+    void mergeSortCall(vector <string> set, int const begin, int const end);
+    void mergeSort();
     void printArray(int A[], int size);
 
     //void insertion(vector <string> arrstr, int k);
