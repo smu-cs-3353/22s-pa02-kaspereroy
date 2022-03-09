@@ -6,7 +6,6 @@ using namespace std;
 int main(){
     cout << "Hello world" << endl;
 
-
     //The sorting algorithms that you will implement are:
     //insertion sort -- done
     //randomized quicksort
@@ -28,9 +27,11 @@ int main(){
     vector <string> vectstr = {"3","1","4","2","6","5","18"};
 
     sorting test;
-    test.readFile("int-60.csv");
+    test.readFileString("int-60.csv");
     //test.merge();
-    test.timSort();
+    //test.timSortString();
+    test.randQuickSortCallString();
+
 
 
  return 0;

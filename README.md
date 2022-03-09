@@ -22,4 +22,12 @@ Sorting algorithm implemented:
 - Which algorithm is the best?
 
 Generate appropriate graphs for each data organization (randomized, sorted, etc) that plot the various data set sizes against run time.  Include a CSV file of your raw data in your repo. 
-"
+
+
+### Data Generation
+In order to generate datasets for our algorithms, we created a Python function that accepted an initial dataset size, 
+created all of the required datasets for that size, and then multiplied the size by 5. From there, the program would 
+loop and create a new dataset of 5x the size. In order to generate the randomized datasets we first 
+
+### Performance Analysis
+### The Best Algorithm

@@ -1,3 +1,4 @@
+//Research on QuickSort function done on GeeksForGeeks.com
 #include <algorithm>
 //
 // Created by Hazel Eroy on 3/2/22.
@@ -11,7 +12,7 @@
 #include <math.h>
 using namespace std;
 
-void sorting::readFile(string fileName) {
+void sorting::readFileString(string fileName) {
     cout << "reading file" << endl;
     string parameter = "../inputs/" + fileName;
     ifstream file ( parameter);
@@ -21,49 +22,96 @@ void sorting::readFile(string fileName) {
         string line;
         while (!file.eof()){
             getline(file, line, ',');
-            dataSet.push_back(line);
+            dataSetString.push_back(line);
         }
     }
 
     cout << "file read" << endl;
 };
+void sorting::readFileInt(string fileName) {
+    cout << "reading file" << endl;
+    string parameter = "../inputs/" + fileName;
+    ifstream file ( parameter);
+    if (!file.is_open()){
+        cout << "not open" << endl;
+    }else{
+        string line;
+        while (!file.eof()){
+            getline(file, line, ',');
+            dataSetInt.push_back(stoi(line));
+        }
+    }
+    cout << "file read" << endl;
+};
+//FIXME need functionality with strings here
 
-
-void sorting::insertion() { //vector <string> arrstr, int k
+void sorting::insertionString() {  //vector <string> arrstr, int k
     cout << "in insertion" << endl;
-    int k = dataSet.size();
-    int i, j, key;
+    long k = dataSetString.size();
+    int i, j;
+    string key;
     for (i = 1; i < k; i++)
     {
-        key = stoi(dataSet[i]);
+        key = dataSetString[i];
         j = i - 1;
 
-        while (j >= 0 && stoi(dataSet[j]) > key)
+        while (j >= 0 && dataSetString[j] > key)
         {
-            dataSet[j + 1] = dataSet[j];
+            dataSetString[j + 1] = dataSetString[j];
             j = j - 1;
         }
-        dataSet[j + 1] = to_string(key);
+        dataSetString[j + 1] = key;
     }
 
     int z;
     for (z = 0; z < k; z++)
-        cout << dataSet[z] << " ";
+        cout << dataSetString[z] << " ";
     cout << endl;
 
-    cout << "done insertion" << endl;
+    cout << "done insertion String" << endl;
+}
+
+void sorting::insertionInt() {  //vector <string> arrstr, int k
+    cout << "in insertion" << endl;
+    long k = dataSetInt.size();
+    int i, j, key;
+    for (i = 1; i < k; i++)
+    {
+        key = dataSetInt[i];
+        j = i - 1;
+
+        while (j >= 0 && dataSetInt[j] > key)
+        {
+            dataSetInt[j + 1] = dataSetInt[j];
+            j = j - 1;
+        }
+        dataSetInt[j + 1] = key;
+    }
+
+    int z;
+    for (z = 0; z < k; z++)
+        cout << dataSetInt[z] << " ";
+    cout << endl;
+
+    cout << "done insertion int" << endl;
 }
 
 //---------------
 
-void sorting::merge(){
-    MergeSortV( 0, dataSet.size()-1);
-    for (int i = 0; i < dataSet.size(); ++i) {
-        cout << dataSet[i] << ' ';
+void sorting::mergeString(){
+    MergeSortVString( 0, dataSetString.size()-1);
+    for (int i = 0; i < dataSetString.size(); ++i) {
+        cout << dataSetString[i] << ' ';
+    }
+}
+void sorting::mergeInt(){
+    MergeSortVInt( 0, dataSetInt.size()-1);
+    for (int i = 0; i < dataSetInt.size(); ++i) {
+        cout << dataSetInt[i] << ' ';
     }
 }
 
-void sorting::MergeSortedIntervals(int s, int m, int e) {
+void sorting::MergeSortedIntervalsString(int s, int m, int e) {
 
     // temp is used to temporary store the vector obtained by merging
     // elements from [s to m] and [m+1 to e] in v
@@ -75,115 +123,288 @@ void sorting::MergeSortedIntervals(int s, int m, int e) {
 
     while (i <= m && j <= e) {
 
-        if (stoi(dataSet[i]) <= stoi(dataSet[j])) {
-            temp.push_back(dataSet[i]);
+        if (dataSetString[i] <= dataSetString[j]) {
+            temp.push_back(dataSetString[i]);
             ++i;
         }
         else {
-            temp.push_back(dataSet[j]);
+            temp.push_back(dataSetString[j]);
             ++j;
         }
 
     }
 
     while (i <= m) {
-        temp.push_back(dataSet[i]);
+        temp.push_back(dataSetString[i]);
         ++i;
     }
 
     while (j <= e) {
-        temp.push_back(dataSet[j]);
+        temp.push_back(dataSetString[j]);
         ++j;
     }
 
     for (int i = s; i <= e; ++i)
-        dataSet[i] = temp[i - s];
+        dataSetString[i] = temp[i - s];
 
 
 }
+void sorting::MergeSortedIntervalsInt(int s, int m, int e) {
 
-void sorting::MergeSortV( int s, int e) {
+    // temp is used to temporary store the vector obtained by merging
+    // elements from [s to m] and [m+1 to e] in v
+    vector<int> temp;
+
+    int i, j;
+    i = s;
+    j = m + 1;
+
+    while (i <= m && j <= e) {
+
+        if (dataSetInt[i] <= dataSetInt[j]) {
+            temp.push_back(dataSetInt[i]);
+            ++i;
+        }
+        else {
+            temp.push_back(dataSetInt[j]);
+            ++j;
+        }
+
+    }
+
+    while (i <= m) {
+        temp.push_back(dataSetInt[i]);
+        ++i;
+    }
+
+    while (j <= e) {
+        temp.push_back(dataSetInt[j]);
+        ++j;
+    }
+
+    for (int i = s; i <= e; ++i)
+        dataSetInt[i] = temp[i - s];
+
+
+}
+void sorting::MergeSortVString( int s, int e) {
     if (s < e) {
         int m = (s + e) / 2;
-        MergeSortV( s, m);
-        MergeSortV(m + 1, e);
-        MergeSortedIntervals( s, m, e);
+        MergeSortVString( s, m);
+        MergeSortVString(m + 1, e);
+        MergeSortedIntervalsString( s, m, e);
     }
 
 }
+void sorting::MergeSortVInt( int s, int e) {
+    if (s < e) {
+        int m = (s + e) / 2;
+        MergeSortVInt( s, m);
+        MergeSortVInt(m + 1, e);
+        MergeSortedIntervalsInt( s, m, e);
+    }
 
+}
 //---------------
 
-void sorting::shellSort()
+void sorting::shellSortString()
 {
-    int n = dataSet.size();
+    int n = dataSetString.size();
 
     for (int gap = n/2; gap > 0; gap /= 2)
     {
         for (int i = gap; i < n; i += 1)
         {
-            int temp = stoi(dataSet[i]);
+            string temp = dataSetString[i];
 
             int j;
-            for (j = i; j >= gap && stoi(dataSet[j - gap]) > temp; j -= gap)
-                dataSet[j] = dataSet[j - gap];
+            for (j = i; j >= gap && dataSetString[j - gap] > temp; j -= gap)
+                dataSetString[j] = dataSetString[j - gap];
 
-            dataSet[j] = to_string(temp);
+            dataSetString[j] = temp;
         }
     }
 
     for (int i=0; i<n; i++)
-        cout << dataSet[i] << " ";
+        cout << dataSetString[i] << " ";
 
 }
+void sorting::shellSortInt()
+{
+    int n = dataSetInt.size();
 
+    for (int gap = n/2; gap > 0; gap /= 2)
+    {
+        for (int i = gap; i < n; i += 1)
+        {
+            int temp = dataSetInt[i];
+
+            int j;
+            for (j = i; j >= gap && dataSetInt[j - gap] > temp; j -= gap)
+                dataSetInt[j] = dataSetInt[j - gap];
+
+            dataSetInt[j] = temp;
+        }
+    }
+
+    for (int i=0; i<n; i++)
+        cout << dataSetInt[i] << " ";
+
+}
 //------
 
-void sorting :: inst(int left, int right)
+void sorting :: instString(int left, int right)
 {
     for (int i = left + 1; i <= right; i++)
     {
-        int temp = stoi(dataSet[i]);
+        string temp = dataSetString[i];
         int j = i - 1;
-        while (j >= left && stoi(dataSet[j]) > temp)
+        while (j >= left && dataSetString[j] > temp)
         {
-            dataSet[j+1] = dataSet[j];
+            dataSetString[j+1] = dataSetString[j];
             j--;
         }
-        dataSet[j+1] = to_string(temp);
+        dataSetString[j+1] = temp;
     }
 }
-
+void sorting :: instInt(int left, int right)
+{
+    for (int i = left + 1; i <= right; i++)
+    {
+        int temp = dataSetInt[i];
+        int j = i - 1;
+        while (j >= left && dataSetInt[j] > temp)
+        {
+            dataSetInt[j+1] = dataSetInt[j];
+            j--;
+        }
+        dataSetInt[j+1] = temp;
+    }
+}
 //----
 
-void sorting::timSort()
-{
-    int n = dataSet.size();
-    int RUN = pow(dataSet.size(), 2);
+//    void sorting::timSortString()
+//    {
+//        int n = dataSetString.size();
+//        int RUN = pow(dataSetString.size(), 2);
+//
+//        // Sort individual subarrays of size RUN
+//        for (int i = 0; i < n; i+=RUN)
+//            inst(i, min((i+RUN-1),
+//                                      (n-1)));
+//
+//        for (int size = RUN; size < n;
+//             size = 2*size)
+//        {
+//
+//            for (int left = 0; left < n;
+//                 left += 2*size)
+//            {
+//
+//                int mid = left + size - 1;
+//                int right = min((left + 2*size - 1),
+//                                (n-1));
+//
+//                if(mid < right)
+//                    MergeSortedIntervalsString(left, mid, right);
+//            }
+//        }
+//
+//        for (int i=0; i<n; i++)
+//            cout << dataSetString[i] << " ";
+//    }
+//void sorting::timSortInt()
+//{
+//    int n = dataSetInt.size();
+//    int RUN = pow(dataSetInt.size(), 2);
+//
+//    // Sort individual subarrays of size RUN
+//    for (int i = 0; i < n; i+=RUN)
+//        inst(i, min((i+RUN-1),
+//                    (n-1)));
+//
+//    for (int size = RUN; size < n;
+//         size = 2*size)
+//    {
+//
+//        for (int left = 0; left < n;
+//             left += 2*size)
+//        {
+//
+//            int mid = left + size - 1;
+//            int right = min((left + 2*size - 1),
+//                            (n-1));
+//
+//            if(mid < right)
+//                MergeSortedIntervalsInt(left, mid, right);
+//        }
+//    }
+//
+//    for (int i=0; i<n; i++)
+//        cout << dataSetInt[i] << " ";
+//}
 
-    // Sort individual subarrays of size RUN
-    for (int i = 0; i < n; i+=RUN)
-        inst(i, min((i+RUN-1),
-                                  (n-1)));
+void sorting::randQuickSortString(vector <string> &v, int low, int high){
+    if(low<high){
+        int pi = randomPartitionString(v, low, high);
+        randQuickSortString(v, low, pi-1);
+        randQuickSortString(v, pi+1, high);
+    }
+}
+void sorting::randQuickSortInt(vector <int> &v, int low, int high){
+    if(low<high){
+        int pi = randomPartitionInt(v, low, high);
+        randQuickSortInt(v, low, pi-1);
+        randQuickSortInt(v, pi+1, high);
+    }
+}
+int sorting::partitionString(vector <string> &v,int low, int high ){
+    string pivot= v[high];
+    int i = low-1;
 
-    for (int size = RUN; size < n;
-         size = 2*size)
-    {
-
-        for (int left = 0; left < n;
-             left += 2*size)
-        {
-
-            int mid = left + size - 1;
-            int right = min((left + 2*size - 1),
-                            (n-1));
-
-            if(mid < right)
-                MergeSortedIntervals(left, mid, right);
+    for (int j = low; j<=high-1; j++){
+        if(v[j]<=pivot){
+            i++;
+            swap(v[i], v[j]);
         }
     }
-
-    for (int i=0; i<n; i++)
-        cout << dataSet[i] << " ";
+    swap(v[i+1], v[high]);
+    return (i+1);
 }
+int sorting::partitionInt(vector <int> &v,int low, int high ){
+    int pivot= v[high];
+    int i = low-1;
 
+    for (int j = low; j<=high-1; j++){
+        if(v[j]<=pivot){
+            i++;
+            swap(v[i], v[j]);
+        }
+    }
+    swap(v[i+1], v[high]);
+    return (i+1);
+}
+int sorting::randomPartitionString(vector <string>& v, int low, int high){
+    srand(time(NULL));
+    int random = low + rand() % (high - low);
+    swap(v[random], v[high]);
+    return partitionString(v, low, high);
+}
+int sorting::randomPartitionInt(vector <int>& v, int low, int high){
+    srand(time(NULL));
+    int random = low + rand() % (high - low);
+    swap(v[random], v[high]);
+    return partitionInt(v, low, high);
+}
+void sorting::randQuickSortCallString() {
+    randQuickSortString(dataSetString, 0, dataSetString.size()-1);
+    for(int i = 0; i < dataSetString.size(); i++){
+        cout << dataSetString[i] << " ";
+    }
+}
+void sorting::randQuickSortCallInt() {
+    randQuickSortInt(dataSetInt, 0, dataSetInt.size()-1);
+    for(int i = 0; i < dataSetInt.size(); i++){
+        cout << dataSetInt[i] << " ";
+    }
+}

@@ -12,21 +12,42 @@ using namespace std;
 
 class sorting {
 private:
-    vector <string> dataSet;
+    vector <string> dataSetString;
+    vector <int> dataSetInt;
 public:
-    void readFile(string fileName);
+    void readFileString(string fileName);
+    void readFileInt(string fileName);
+    void insertionString();
 
-    void insertion();
-
-    void merge();
-    void MergeSortedIntervals( int s, int m, int e);
+    void mergeString();
+    void MergeSortedIntervalsString( int s, int m, int e);
+    void MergeSortedIntervalsInt( int s, int m, int e);
     void MergeSortV( int s, int e);
 
-    void shellSort();
+    void shellSortString();
 
-    void timSort();
+    void timSortString();
 
-    void  inst(int left, int right);
+    void  instString(int left, int right);
+    void randQuickSortCallString();
+    void randQuickSortString(vector<string>&, int, int);
+    int partitionString(vector<string>&, int, int);
+    int randomPartitionString(vector<string>&, int, int );
+
+    void insertionInt();
+
+    void mergeInt();
+    void MergeSortVInt( int s, int e);
+    void MergeSortVString( int s, int e);
+    void shellSortInt();
+
+    void timSortInt();
+
+    void instInt(int left, int right);
+    void randQuickSortCallInt();
+    void randQuickSortInt(vector<int>&, int, int);
+    int partitionInt(vector<int>&, int, int);
+    int randomPartitionInt(vector<int>&, int, int );
 
 };
 
