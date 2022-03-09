@@ -1,6 +1,18 @@
 # Program 2: Sorting
 ### London Kasper and Hazel Eroy
-Welcome to our README.md!
+
+**Summary**
+
+This program implements six different sorting algorithms and compares the performances on different set sizes
+
+Sorting algorithm implemented:
+- insertion sort
+- randomized quicksort
+- merge sort
+- shellsort
+- introsort
+- timsort
+
 <br>"You’ll write a report on the analysis of the data in the README.md.  I won’t dictate the requirements, but I would like you to answer the following questions:
 - How did you generate the various data sets?
 - How does the performance of the various sorting algorithms differ between randomized data and pre-sorted data? Does this change with integers vs strings? - How do the algorithms perform as the datasets grow very large?  
