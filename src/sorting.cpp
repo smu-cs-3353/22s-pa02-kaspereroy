@@ -12,7 +12,7 @@
 #include <math.h>
 using namespace std;
 
-void sorting::readFileString(string fileName) {
+void sorting::readFile(string fileName) {
     cout << "reading file" << endl;
     string parameter = "../inputs/" + fileName;
     ifstream file ( parameter);
@@ -25,25 +25,34 @@ void sorting::readFileString(string fileName) {
             dataSetString.push_back(line);
         }
     }
-
-    cout << "file read" << endl;
-};
-void sorting::readFileInt(string fileName) {
-    cout << "reading file" << endl;
-    string parameter = "../inputs/" + fileName;
-    ifstream file ( parameter);
-    if (!file.is_open()){
+    file.close();
+    ifstream file2 (parameter);
+    if (!file2.is_open()){
         cout << "not open" << endl;
     }else{
         string line;
-        while (!file.eof()){
-            getline(file, line, ',');
+        while (!file2.eof()){
+            getline(file2, line, ',');
             dataSetInt.push_back(stoi(line));
         }
     }
     cout << "file read" << endl;
 };
-//FIXME need functionality with strings here
+//void sorting::readFileInt(string fileName) {
+//    cout << "reading file" << endl;
+//    string parameter = "../inputs/" + fileName;
+//    ifstream file ( parameter);
+//    if (!file.is_open()){
+//        cout << "not open" << endl;
+//    }else{
+//        string line;
+//        while (!file.eof()){
+//            getline(file, line, ',');
+//            dataSetInt.push_back(stoi(line));
+//        }
+//    }
+//    cout << "file read" << endl;
+//};
 
 void sorting::insertionString() {  //vector <string> arrstr, int k
     cout << "in insertion" << endl;

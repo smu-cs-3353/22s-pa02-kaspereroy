@@ -15,8 +15,8 @@ private:
     vector <string> dataSetString;
     vector <int> dataSetInt;
 public:
-    void readFileString(string fileName);
-    void readFileInt(string fileName);
+    void readFile(string fileName);
+    //void readFileInt(string fileName);
     void insertionString();
 
     void mergeString();

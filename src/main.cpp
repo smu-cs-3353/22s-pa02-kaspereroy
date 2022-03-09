@@ -27,8 +27,8 @@ int main(){
     vector <string> vectstr = {"3","1","4","2","6","5","18"};
 
     sorting test;
-    test.readFileString("int-60.csv");
-    test.readFileInt("int-60.csv");
+    test.readFile("int-60.csv");
+    //test.readFileInt("int-60.csv");
     //test.merge();
     //test.timSortString();
     cout <<"Testing string call" << endl;
