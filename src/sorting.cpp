@@ -401,6 +401,7 @@ void sorting::randQuickSortCallString() {
     for(int i = 0; i < dataSetString.size(); i++){
         cout << dataSetString[i] << " ";
     }
+    cout << endl;
 }
 void sorting::randQuickSortCallInt() {
     randQuickSortInt(dataSetInt, 0, dataSetInt.size()-1);

@@ -28,9 +28,13 @@ int main(){
 
     sorting test;
     test.readFileString("int-60.csv");
+    test.readFileInt("int-60.csv");
     //test.merge();
     //test.timSortString();
+    cout <<"Testing string call" << endl;
     test.randQuickSortCallString();
+    cout << "Testing integer call" << endl;
+    test.randQuickSortCallInt();
 
 
 
