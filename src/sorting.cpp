@@ -99,19 +99,19 @@ void sorting::insertionInt() {  //vector <string> arrstr, int k
 //---------------
 
 void sorting::mergeString(){
-    MergeSortV( 0, dataSetString.size()-1);
+    MergeSortVString( 0, dataSetString.size()-1);
     for (int i = 0; i < dataSetString.size(); ++i) {
         cout << dataSetString[i] << ' ';
     }
 }
 void sorting::mergeInt(){
-    MergeSortV( 0, dataSetInt.size()-1);
+    MergeSortVInt( 0, dataSetInt.size()-1);
     for (int i = 0; i < dataSetInt.size(); ++i) {
         cout << dataSetInt[i] << ' ';
     }
 }
 
-void sorting::MergeSortedIntervals(int s, int m, int e) {
+void sorting::MergeSortedIntervalsString(int s, int m, int e) {
 
     // temp is used to temporary store the vector obtained by merging
     // elements from [s to m] and [m+1 to e] in v
@@ -149,11 +149,11 @@ void sorting::MergeSortedIntervals(int s, int m, int e) {
 
 
 }
-void sorting::MergeSortedIntervals(int s, int m, int e) {
+void sorting::MergeSortedIntervalsInt(int s, int m, int e) {
 
     // temp is used to temporary store the vector obtained by merging
     // elements from [s to m] and [m+1 to e] in v
-    vector<string> temp;
+    vector<int> temp;
 
     int i, j;
     i = s;
@@ -161,42 +161,50 @@ void sorting::MergeSortedIntervals(int s, int m, int e) {
 
     while (i <= m && j <= e) {
 
-        if (dataSetString[i] <= dataSetString[j]) {
-            temp.push_back(dataSetString[i]);
+        if (dataSetInt[i] <= dataSetInt[j]) {
+            temp.push_back(dataSetInt[i]);
             ++i;
         }
         else {
-            temp.push_back(dataSetString[j]);
+            temp.push_back(dataSetInt[j]);
             ++j;
         }
 
     }
 
     while (i <= m) {
-        temp.push_back(dataSetString[i]);
+        temp.push_back(dataSetInt[i]);
         ++i;
     }
 
     while (j <= e) {
-        temp.push_back(dataSetString[j]);
+        temp.push_back(dataSetInt[j]);
         ++j;
     }
 
     for (int i = s; i <= e; ++i)
-        dataSetString[i] = temp[i - s];
+        dataSetInt[i] = temp[i - s];
 
 
 }
-void sorting::MergeSortV( int s, int e) {
+void sorting::MergeSortVString( int s, int e) {
     if (s < e) {
         int m = (s + e) / 2;
-        MergeSortV( s, m);
-        MergeSortV(m + 1, e);
-        MergeSortedIntervals( s, m, e);
+        MergeSortVString( s, m);
+        MergeSortVString(m + 1, e);
+        MergeSortedIntervalsString( s, m, e);
     }
 
 }
+void sorting::MergeSortVInt( int s, int e) {
+    if (s < e) {
+        int m = (s + e) / 2;
+        MergeSortVInt( s, m);
+        MergeSortVInt(m + 1, e);
+        MergeSortedIntervalsInt( s, m, e);
+    }
 
+}
 //---------------
 
 void sorting::shellSortString()
@@ -275,66 +283,66 @@ void sorting :: instInt(int left, int right)
 }
 //----
 
-    void sorting::timSortString()
-    {
-        int n = dataSetString.size();
-        int RUN = pow(dataSetString.size(), 2);
-
-        // Sort individual subarrays of size RUN
-        for (int i = 0; i < n; i+=RUN)
-            inst(i, min((i+RUN-1),
-                                      (n-1)));
-
-        for (int size = RUN; size < n;
-             size = 2*size)
-        {
-
-            for (int left = 0; left < n;
-                 left += 2*size)
-            {
-
-                int mid = left + size - 1;
-                int right = min((left + 2*size - 1),
-                                (n-1));
-
-                if(mid < right)
-                    MergeSortedIntervals(left, mid, right);
-            }
-        }
-
-        for (int i=0; i<n; i++)
-            cout << dataSetString[i] << " ";
-    }
-void sorting::timSortInt()
-{
-    int n = dataSetInt.size();
-    int RUN = pow(dataSetInt.size(), 2);
-
-    // Sort individual subarrays of size RUN
-    for (int i = 0; i < n; i+=RUN)
-        inst(i, min((i+RUN-1),
-                    (n-1)));
-
-    for (int size = RUN; size < n;
-         size = 2*size)
-    {
-
-        for (int left = 0; left < n;
-             left += 2*size)
-        {
-
-            int mid = left + size - 1;
-            int right = min((left + 2*size - 1),
-                            (n-1));
-
-            if(mid < right)
-                MergeSortedIntervals(left, mid, right);
-        }
-    }
-
-    for (int i=0; i<n; i++)
-        cout << dataSetInt[i] << " ";
-}
+//    void sorting::timSortString()
+//    {
+//        int n = dataSetString.size();
+//        int RUN = pow(dataSetString.size(), 2);
+//
+//        // Sort individual subarrays of size RUN
+//        for (int i = 0; i < n; i+=RUN)
+//            inst(i, min((i+RUN-1),
+//                                      (n-1)));
+//
+//        for (int size = RUN; size < n;
+//             size = 2*size)
+//        {
+//
+//            for (int left = 0; left < n;
+//                 left += 2*size)
+//            {
+//
+//                int mid = left + size - 1;
+//                int right = min((left + 2*size - 1),
+//                                (n-1));
+//
+//                if(mid < right)
+//                    MergeSortedIntervalsString(left, mid, right);
+//            }
+//        }
+//
+//        for (int i=0; i<n; i++)
+//            cout << dataSetString[i] << " ";
+//    }
+//void sorting::timSortInt()
+//{
+//    int n = dataSetInt.size();
+//    int RUN = pow(dataSetInt.size(), 2);
+//
+//    // Sort individual subarrays of size RUN
+//    for (int i = 0; i < n; i+=RUN)
+//        inst(i, min((i+RUN-1),
+//                    (n-1)));
+//
+//    for (int size = RUN; size < n;
+//         size = 2*size)
+//    {
+//
+//        for (int left = 0; left < n;
+//             left += 2*size)
+//        {
+//
+//            int mid = left + size - 1;
+//            int right = min((left + 2*size - 1),
+//                            (n-1));
+//
+//            if(mid < right)
+//                MergeSortedIntervalsInt(left, mid, right);
+//        }
+//    }
+//
+//    for (int i=0; i<n; i++)
+//        cout << dataSetInt[i] << " ";
+//}
 
 void sorting::randQuickSortString(vector <string> &v, int low, int high){
     if(low<high){

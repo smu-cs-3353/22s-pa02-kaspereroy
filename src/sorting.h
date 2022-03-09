@@ -20,7 +20,8 @@ public:
     void insertionString();
 
     void mergeString();
-    void MergeSortedIntervals( int s, int m, int e);
+    void MergeSortedIntervalsString( int s, int m, int e);
+    void MergeSortedIntervalsInt( int s, int m, int e);
     void MergeSortV( int s, int e);
 
     void shellSortString();
@@ -36,9 +37,8 @@ public:
     void insertionInt();
 
     void mergeInt();
-//    void MergeSortedIntervals( int s, int m, int e);
-//    void MergeSortV( int s, int e);
-
+    void MergeSortVInt( int s, int e);
+    void MergeSortVString( int s, int e);
     void shellSortInt();
 
     void timSortInt();
