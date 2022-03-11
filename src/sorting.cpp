@@ -201,12 +201,6 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         dataSetString = tempString;
         dataSetInt = tempInt;
 
-
-
-
-
-
-
     }
 }
 
