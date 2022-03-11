@@ -12,6 +12,9 @@
 #include <math.h>
 #include <chrono>
 
+
+using namespace std;
+
 using namespace std;
 
 void sorting::readFile(string fileName){
@@ -61,12 +64,24 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         dataSetString = fullDataString[i];
         dataSetInt = fullDataInt[i];
 //run all of the algorithms for both data types while timing each algorithm (and don't forget to output the time data to a csv)
+
+        auto start1 = std::chrono::high_resolution_clock::now();
         randQuickSortCallInt();
+        auto stop1 = std::chrono::high_resolution_clock::now();
+
         //output << "duration: " << duration.count() << endl;
         dataSetString.clear();
         dataSetInt.clear();
+
+        auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(stop1 - start1);
+        cout << endl << "Rando QuickSort: " << " " << duration1.count() << endl;
     }
 }
+
+
+
+
+
 //void sorting::readFileInt(string fileName) {
 //    cout << "reading file" << endl;
 //    string parameter = "../inputs/" + fileName;
