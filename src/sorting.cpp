@@ -68,16 +68,143 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         dataSetInt = tempInt;
 //run all of the algorithms for both data types while timing each algorithm (and don't forget to output the time data to a csv)
 
-        auto start1 = std::chrono::high_resolution_clock::now();
+        //Randomized Quick Sorting
+        auto start = std::chrono::high_resolution_clock::now();
         randQuickSortCallInt();
-        auto stop1 = std::chrono::high_resolution_clock::now();
+        auto stop = std::chrono::high_resolution_clock::now();
 
-        //output << "duration: " << duration.count() << endl;
         dataSetString.clear();
         dataSetInt.clear();
 
-        auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(stop1 - start1);
-        cout << endl << "Rando QuickSort: " << " " << duration1.count() << endl;
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Rando QuickSort Integer: " << " " << duration.count() << endl;
+
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        randQuickSortCallString();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Rando QuickSort String: " << " " << duration.count() << endl;
+
+
+        //Insertion Sort
+
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        insertionInt();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Insertion Sort Integer: " << " " << duration.count() << endl;
+
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        insertionString();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Insertion Sort String: " << " " << duration.count() << endl;
+
+
+        //Merge sort
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        mergeInt();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Merge Sort Integer: " << " " << duration.count() << endl;
+
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        mergeString();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Merge Sort String: " << " " << duration.count() << endl;
+
+        //shellsort
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        shellSortInt();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro Sort Integer: " << " " << duration.count() << endl;
+
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        shellSortString();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro Sort String: " << " " << duration.count() << endl;
+
+        //introsort
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro Sort Integer: " << " " << duration.count() << endl;
+
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        shellSortString();
+        stop = std::chrono::high_resolution_clock::now();
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro Sort String: " << " " << duration.count() << endl;
+        //timsort
+
+
     }
 }
 
@@ -102,7 +229,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 //};
 
 void sorting::insertionString() {  //vector <string> arrstr, int k
-    cout << "in insertion" << endl;
+
     long k = dataSetString.size();
     int i, j;
     string key;
@@ -124,11 +251,10 @@ void sorting::insertionString() {  //vector <string> arrstr, int k
         cout << dataSetString[z] << " ";
     cout << endl;
 
-    cout << "done insertion String" << endl;
+
 }
 
 void sorting::insertionInt() {  //vector <string> arrstr, int k
-    cout << "in insertion" << endl;
     long k = dataSetInt.size();
     int i, j, key;
     for (i = 1; i < k; i++)
@@ -149,7 +275,6 @@ void sorting::insertionInt() {  //vector <string> arrstr, int k
         cout << dataSetInt[z] << " ";
     cout << endl;
 
-    cout << "done insertion int" << endl;
 }
 
 //---------------
