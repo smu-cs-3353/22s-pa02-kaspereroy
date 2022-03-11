@@ -177,32 +177,8 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         cout << endl << "Intro Sort String: " << " " << duration.count() << endl;
 
         //introsort
-        dataSetString = tempString;
-        dataSetInt = tempInt;
-
-        start = std::chrono::high_resolution_clock::now();
-        
-        stop = std::chrono::high_resolution_clock::now();
-
-        dataSetString.clear();
-        dataSetInt.clear();
-
-        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        cout << endl << "Intro Sort Integer: " << " " << duration.count() << endl;
-
-        dataSetString = tempString;
-        dataSetInt = tempInt;
-
-        start = std::chrono::high_resolution_clock::now();
-        shellSortString();
-        stop = std::chrono::high_resolution_clock::now();
-
-        dataSetString.clear();
-        dataSetInt.clear();
-
-        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        cout << endl << "Intro Sort String: " << " " << duration.count() << endl;
         //timsort
+
 
 
     }
