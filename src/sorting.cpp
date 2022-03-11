@@ -10,34 +10,63 @@
 #include <fstream>
 #include <vector>
 #include <math.h>
+#include <chrono>
+
 using namespace std;
 
-void sorting::readFile(string fileName) {
-    cout << "reading file" << endl;
-    string parameter = "../inputs/" + fileName;
-    ifstream file ( parameter);
-    if (!file.is_open()){
-        cout << "not open" << endl;
-    }else{
-        string line;
-        while (!file.eof()){
-            getline(file, line, ',');
-            dataSetString.push_back(line);
-        }
+void sorting::readFile(string fileName){
+    ifstream file("../inputs/"+fileName);
+
+    if(!file.is_open()){ // Check to see if file is not open
+        cout << "File did not open" << endl;
     }
-    file.close();
-    ifstream file2 (parameter);
-    if (!file2.is_open()){
-        cout << "not open" << endl;
-    }else{
-        string line;
-        while (!file2.eof()){
-            getline(file2, line, ',');
-            dataSetInt.push_back(stoi(line));
+    else{ // If file is open, begin reading in data
+        string fullLine; // Will hold an entire line of the csv file
+        string delimiter = ",";
+        string temp;
+        size_t pos = 0;
+        getline(file, fullLine);
+
+        while(!file.eof()){
+            vector <string> tempString;
+            vector <int> tempInt;
+            // Read an entire line into fullLine (AKA an entire dataset)
+            while((pos = fullLine.find(delimiter))!= string::npos){
+                temp = fullLine.substr(0, pos); // Isolate an element of that dataset
+                tempString.push_back(temp); // Add that element to the temp vectors to later be pushed back into the full data vectors
+                tempInt.push_back(stoi(temp));
+                fullLine.erase(0, pos + delimiter.length());
+            }
+            temp = fullLine.substr(0, pos);
+            tempString.push_back(temp); // Make sure to get the last element of that line
+            tempInt.push_back(stoi(temp));
+            fullDataString.push_back(tempString);
+            fullDataInt.push_back(tempInt);
+            getline(file, fullLine, '\n');
         }
+
     }
-    cout << "file read" << endl;
-};
+//    cout << "The size of fullDataString: " << fullDataString.size() << endl;
+//    cout << "The size of fullDataInt: " << fullDataInt.size() << endl;
+//    for(int i = 0; i < fullDataInt[0].size(); i++){
+//        cout << fullDataInt[0][i] << " ";
+//    }
+    //cout << endl;
+}
+
+void sorting::runAlgorithms(){ // This function runs all of the datasets through each of the algorithms and records time data to an output csv
+    ofstream output;
+    output.open("../output/output.csv");
+    for(int i = 0; i < fullDataString.size(); i++){
+        dataSetString = fullDataString[i];
+        dataSetInt = fullDataInt[i];
+//run all of the algorithms for both data types while timing each algorithm (and don't forget to output the time data to a csv)
+        randQuickSortCallInt();
+        //output << "duration: " << duration.count() << endl;
+        dataSetString.clear();
+        dataSetInt.clear();
+    }
+}
 //void sorting::readFileInt(string fileName) {
 //    cout << "reading file" << endl;
 //    string parameter = "../inputs/" + fileName;
