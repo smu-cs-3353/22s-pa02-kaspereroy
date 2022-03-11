@@ -161,7 +161,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        cout << endl << "Intro Sort Integer: " << " " << duration.count() << endl;
+        cout << endl << "Shell Sort Integer: " << " " << duration.count() << endl;
 
         dataSetString = tempString;
         dataSetInt = tempInt;
@@ -174,10 +174,36 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        cout << endl << "Intro Sort String: " << " " << duration.count() << endl;
+        cout << endl << "Shell Sort String: " << " " << duration.count() << endl;
 
         //introsort
         //timsort
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+        start = std::chrono::high_resolution_clock::now();
+        timSortInt();
+        stop = std::chrono::high_resolution_clock::now();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Tim Sort Integer: " << " " << duration.count() << endl;
+
+        start = std::chrono::high_resolution_clock::now();
+        timSortString();
+        stop = std::chrono::high_resolution_clock::now();
+
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Tim Sort String: not sorting as string" << " " << duration.count() << endl;
+
+        dataSetString.clear();
+        dataSetInt.clear();
+
+        dataSetString = tempString;
+        dataSetInt = tempInt;
+
+
+
+
 
 
 
@@ -186,23 +212,6 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 
 // I have never felt more confident in my abilities
 
-
-
-//void sorting::readFileInt(string fileName) {
-//    cout << "reading file" << endl;
-//    string parameter = "../inputs/" + fileName;
-//    ifstream file ( parameter);
-//    if (!file.is_open()){
-//        cout << "not open" << endl;
-//    }else{
-//        string line;
-//        while (!file.eof()){
-//            getline(file, line, ',');
-//            dataSetInt.push_back(stoi(line));
-//        }
-//    }
-//    cout << "file read" << endl;
-//};
 
 void sorting::insertionString() {  //vector <string> arrstr, int k
 
@@ -438,68 +447,6 @@ void sorting :: instInt(int left, int right)
         dataSetInt[j+1] = temp;
     }
 }
-//----
-
-//    void sorting::timSortString()
-//    {
-//        int n = dataSetString.size();
-//        int RUN = pow(dataSetString.size(), 2);
-//
-//        // Sort individual subarrays of size RUN
-//        for (int i = 0; i < n; i+=RUN)
-//            inst(i, min((i+RUN-1),
-//                                      (n-1)));
-//
-//        for (int size = RUN; size < n;
-//             size = 2*size)
-//        {
-//
-//            for (int left = 0; left < n;
-//                 left += 2*size)
-//            {
-//
-//                int mid = left + size - 1;
-//                int right = min((left + 2*size - 1),
-//                                (n-1));
-//
-//                if(mid < right)
-//                    MergeSortedIntervalsString(left, mid, right);
-//            }
-//        }
-//
-//        for (int i=0; i<n; i++)
-//            cout << dataSetString[i] << " ";
-//    }
-//void sorting::timSortInt()
-//{
-//    int n = dataSetInt.size();
-//    int RUN = pow(dataSetInt.size(), 2);
-//
-//    // Sort individual subarrays of size RUN
-//    for (int i = 0; i < n; i+=RUN)
-//        inst(i, min((i+RUN-1),
-//                    (n-1)));
-//
-//    for (int size = RUN; size < n;
-//         size = 2*size)
-//    {
-//
-//        for (int left = 0; left < n;
-//             left += 2*size)
-//        {
-//
-//            int mid = left + size - 1;
-//            int right = min((left + 2*size - 1),
-//                            (n-1));
-//
-//            if(mid < right)
-//                MergeSortedIntervalsInt(left, mid, right);
-//        }
-//    }
-//
-//    for (int i=0; i<n; i++)
-//        cout << dataSetInt[i] << " ";
-//}
 
 void sorting::randQuickSortString(vector <string> &v, int low, int high){
     if(low<high){
@@ -565,4 +512,68 @@ void sorting::randQuickSortCallInt() {
     for(int i = 0; i < dataSetInt.size(); i++){
         cout << dataSetInt[i] << " ";
     }
+}
+
+
+//-----
+void sorting::timSortInt()
+{
+    int n = dataSetInt.size();
+    int RUN = pow(dataSetInt.size(), 2);
+
+    // Sort individual subarrays of size RUN
+    for (int i = 0; i < n; i+=RUN)
+        instInt(i, min((i+RUN-1),
+                    (n-1)));
+
+    for (int size = RUN; size < n;
+         size = 2*size)
+    {
+
+        for (int left = 0; left < n;
+             left += 2*size)
+        {
+
+            int mid = left + size - 1;
+            int right = min((left + 2*size - 1),
+                            (n-1));
+
+            if(mid < right)
+                MergeSortedIntervalsInt(left, mid, right);
+        }
+    }
+
+    for (int i=0; i<n; i++)
+        cout << dataSetInt[i] << " ";
+}
+
+void sorting::timSortString()
+{
+    int n = dataSetInt.size();
+    int RUN = pow(dataSetInt.size(), 2);
+
+    // Sort individual subarrays of size RUN
+    for (int i = 0; i < n; i+=RUN)
+        instString(i, min((i+RUN-1),
+                       (n-1)));
+
+    for (int size = RUN; size < n;
+         size = 2*size)
+    {
+
+        for (int left = 0; left < n;
+             left += 2*size)
+        {
+
+            int mid = left + size - 1;
+            int right = min((left + 2*size - 1),
+                            (n-1));
+
+            if(mid < right)
+                MergeSortedIntervalsString(left, mid, right);
+        }
+    }
+
+    for (int i=0; i<n; i++)
+        cout << dataSetInt[i] << " ";
 }

@@ -29,9 +29,7 @@ public:
 
     void shellSortString();
 
-    void timSortString();
 
-    void  instString(int left, int right);
     void randQuickSortCallString();
     void randQuickSortString(vector<string>&, int, int);
     int partitionString(vector<string>&, int, int);
@@ -44,13 +42,15 @@ public:
     void MergeSortVString( int s, int e);
     void shellSortInt();
 
-    void timSortInt();
-
-    void instInt(int left, int right);
     void randQuickSortCallInt();
     void randQuickSortInt(vector<int>&, int, int);
     int partitionInt(vector<int>&, int, int);
     int randomPartitionInt(vector<int>&, int, int );
+
+    void timSortInt();
+    void timSortString();
+    void instInt(int left, int right);
+    void  instString(int left, int right);
 
 };
 
