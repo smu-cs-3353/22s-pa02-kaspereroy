@@ -60,9 +60,12 @@ void sorting::readFile(string fileName){
 void sorting::runAlgorithms(){ // This function runs all of the datasets through each of the algorithms and records time data to an output csv
     ofstream output;
     output.open("../output/output.csv");
+    // output header of all sorting algorithms in order that they go
     for(int i = 0; i < fullDataString.size(); i++){
-        dataSetString = fullDataString[i];
-        dataSetInt = fullDataInt[i];
+        vector<int>  tempInt = fullDataInt[i];
+        vector<string> tempString = fullDataString[i];
+        dataSetString = tempString;
+        dataSetInt = tempInt;
 //run all of the algorithms for both data types while timing each algorithm (and don't forget to output the time data to a csv)
 
         auto start1 = std::chrono::high_resolution_clock::now();
@@ -78,7 +81,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
     }
 }
 
-
+// I have never felt more confident in my abilities
 
 
 
