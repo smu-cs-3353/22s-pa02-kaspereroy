@@ -18,7 +18,7 @@ using namespace std;
 using namespace std;
 
 void sorting::readFile(string fileName){
-    ifstream file("../inputs/"+fileName);
+    ifstream file("../input/"+fileName);
 
     if(!file.is_open()){ // Check to see if file is not open
         cout << "File did not open" << endl;
@@ -58,8 +58,12 @@ void sorting::readFile(string fileName){
 }
 
 void sorting::runAlgorithms(){ // This function runs all of the datasets through each of the algorithms and records time data to an output csv
-    ofstream output;
-    output.open("../output/output.csv");
+    ofstream outputInt;
+    ofstream outputString;
+    outputInt.open("../output/outputInt.csv");
+    outputInt << "randQuickSort,insertion,merge,shell,intro,tim\n";
+    outputString.open("../output/outputString.csv");
+    outputString << "randQuickSort,insertion,merge,shell,intro,tim\n";
     // output header of all sorting algorithms in order that they go
     for(int i = 0; i < fullDataString.size(); i++){
         vector<int>  tempInt = fullDataInt[i];
@@ -72,26 +76,16 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         auto start = std::chrono::high_resolution_clock::now();
         randQuickSortCallInt();
         auto stop = std::chrono::high_resolution_clock::now();
-
-        dataSetString.clear();
-        dataSetInt.clear();
-
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Rando QuickSort Integer: " << " " << duration.count() << endl;
-
-        dataSetString = tempString;
-        dataSetInt = tempInt;
+        outputInt<< duration.count()<<",";
 
         start = std::chrono::high_resolution_clock::now();
         randQuickSortCallString();
         stop = std::chrono::high_resolution_clock::now();
-
-        dataSetString.clear();
-        dataSetInt.clear();
-
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Rando QuickSort String: " << " " << duration.count() << endl;
-
+        outputString << duration.count()<<",";
 
         //Insertion Sort
 
@@ -102,11 +96,12 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         insertionInt();
         stop = std::chrono::high_resolution_clock::now();
 
-        dataSetString.clear();
-        dataSetInt.clear();
+//        dataSetString.clear();
+//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Insertion Sort Integer: " << " " << duration.count() << endl;
+        outputInt<< duration.count()<<",";
 
         dataSetString = tempString;
         dataSetInt = tempInt;
@@ -115,12 +110,12 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         insertionString();
         stop = std::chrono::high_resolution_clock::now();
 
-        dataSetString.clear();
-        dataSetInt.clear();
+//        dataSetString.clear();
+//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Insertion Sort String: " << " " << duration.count() << endl;
-
+        outputString << duration.count()<<",";
 
         //Merge sort
         dataSetString = tempString;
@@ -130,11 +125,12 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         mergeInt();
         stop = std::chrono::high_resolution_clock::now();
 
-        dataSetString.clear();
-        dataSetInt.clear();
+//        dataSetString.clear();
+//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Merge Sort Integer: " << " " << duration.count() << endl;
+        outputInt<< duration.count()<<",";
 
         dataSetString = tempString;
         dataSetInt = tempInt;
@@ -143,11 +139,12 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         mergeString();
         stop = std::chrono::high_resolution_clock::now();
 
-        dataSetString.clear();
-        dataSetInt.clear();
+//        dataSetString.clear();
+//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Merge Sort String: " << " " << duration.count() << endl;
+        outputString << duration.count()<<",";
 
         //shellsort
         dataSetString = tempString;
@@ -156,12 +153,13 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         start = std::chrono::high_resolution_clock::now();
         shellSortInt();
         stop = std::chrono::high_resolution_clock::now();
-
-        dataSetString.clear();
-        dataSetInt.clear();
+//
+//        dataSetString.clear();
+//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Shell Sort Integer: " << " " << duration.count() << endl;
+        outputInt<< duration.count()<<",";
 
         dataSetString = tempString;
         dataSetInt = tempInt;
@@ -170,14 +168,17 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         shellSortString();
         stop = std::chrono::high_resolution_clock::now();
 
-        dataSetString.clear();
-        dataSetInt.clear();
+//        dataSetString.clear();
+//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Shell Sort String: " << " " << duration.count() << endl;
+        outputString << duration.count()<<",";
 
         //introsort
         //timsort
+        dataSetString.clear();
+        dataSetInt.clear();
         dataSetString = tempString;
         dataSetInt = tempInt;
 
@@ -187,6 +188,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Tim Sort Integer: " << " " << duration.count() << endl;
+        outputInt<< duration.count();
 
         start = std::chrono::high_resolution_clock::now();
         timSortString();
@@ -194,17 +196,17 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Tim Sort String: not sorting as string" << " " << duration.count() << endl;
+        outputString << duration.count();
 
-        dataSetString.clear();
-        dataSetInt.clear();
+//        dataSetString.clear();
+//        dataSetInt.clear();
 
         dataSetString = tempString;
         dataSetInt = tempInt;
-
+        outputInt << "\n";
+        outputString << "\n";
     }
 }
-
-// I have never felt more confident in my abilities
 
 
 void sorting::insertionString() {  //vector <string> arrstr, int k
