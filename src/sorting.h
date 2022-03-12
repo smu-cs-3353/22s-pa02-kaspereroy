@@ -52,6 +52,18 @@ public:
     void instInt(int left, int right);
     void  instString(int left, int right);
 
+    void swapValue(int* a, int* b);
+    void InsertionSort(int arr[], int* begin, int* end);
+    int* Partition(int arr[], int low, int high);
+    int* MedianOfThree(int* a, int* b, int* c);
+    void IntrosortUtil(int arr[], int* begin, int* end,
+                       int depthLimit);
+    void Introsort(int arr[], int* begin, int* end);
+    void printArray(int arr[], int n);
+
+    void heapify(int arr[], int n, int i);
+    void heapSort(int arr[], int n);
+
 };
 
 
