@@ -581,7 +581,7 @@ void sorting::timSortString()
     }
 
     for (int i=0; i<n; i++)
-        cout << dataSetInt[i] << " ";
+        cout << dataSetString[i] << " ";
 }
 
 //-----
