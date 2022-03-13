@@ -61,11 +61,13 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
     ofstream outputInt;
     ofstream outputString;
     outputInt.open("../output/outputInt.csv");
-    outputInt << "randQuickSort,insertion,merge,shell,intro,tim\n";
+    outputInt << "size,randQuickSort,insertion,merge,shell,intro,tim\n";
     outputString.open("../output/outputString.csv");
-    outputString << "randQuickSort,insertion,merge,shell,intro,tim\n";
+    outputString << "size,randQuickSort,insertion,merge,shell,intro,tim\n";
     // output header of all sorting algorithms in order that they go
     for(int i = 0; i < fullDataString.size(); i++){
+        outputString << fullDataString[i].size()<<',';
+        outputInt << fullDataInt[i].size()<<',';
         vector<int>  tempInt = fullDataInt[i];
         vector<string> tempString = fullDataString[i];
         dataSetString = tempString;
