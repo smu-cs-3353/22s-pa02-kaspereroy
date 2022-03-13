@@ -19,11 +19,5 @@ int main(){
         test.Introsort(arr, arr, arr + n - 1);
         test.printArray(arr, n);
 
-
-
-
-
-
  return 0;
-
 }

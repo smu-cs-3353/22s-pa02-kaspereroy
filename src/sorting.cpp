@@ -666,7 +666,7 @@ void sorting::IntrosortUtil(int arr[], int* begin, int* end,
 
     // If the depth is zero use heapsort
     if (depthLimit == 0) {
-        make_heap(begin, end + 1);
+        make_heap(begin, end + 1); //FIXME heap
         sort_heap(begin, end + 1);
         return;
     }
