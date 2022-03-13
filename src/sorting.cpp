@@ -12,9 +12,6 @@
 #include <math.h>
 #include <chrono>
 
-
-using namespace std;
-
 using namespace std;
 
 void sorting::readFile(string fileName){
@@ -201,7 +198,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         dataSetString = tempString;
         dataSetInt = tempInt;
 
-        callIntroSortInt();
+        callIntroSortStr();
 
 
     }
@@ -582,15 +579,12 @@ void sorting::callIntroSortInt(){
     for (int i = 0; i < dataSetInt.size(); i++){
         arr[i] = dataSetInt[i];
     }
-    cout << "start" << endl;
-    IntrosortInt(arr, arr, arr + n - 1);
-    cout << "end" << endl;
 
-    cout << "printing..." << endl;
+    IntrosortInt(arr, arr, arr + n - 1);
+
     for (int u = 0; u < n; u++){
         cout << arr[u] << " ";
     }
-    cout << "printed" << endl;
 }
 
 void sorting::swapValueInt(int* a, int* b)
@@ -739,6 +733,21 @@ void sorting::heapSortInt(int* begin, int*end)
 }
 
 //-----
+//FIXME -------------------String----------------------------------
+void sorting::callIntroSortStr(){
+    int n = dataSetString.size();
+    string arr[n];
+    for (int i = 0; i < dataSetString.size(); i++){
+        arr[i] = dataSetString[i];
+    }
+
+    IntrosortStr(arr, arr, arr + n - 1);
+
+    for (int u = 0; u < n; u++){
+        cout << arr[u] << " ";
+    }
+}
+
 
 
 void sorting::swapValueStr(string* a, string* b)
@@ -757,15 +766,15 @@ void sorting::InsertionSortStr(string arr[], string* begin, string* end)
     int right = end - arr;
 
     for (int i = left + 1; i <= right; i++) {
-        string key = dataSetString[i];
+        string key = arr[i];
         int j = i - 1;
 
 
-        while (j >= left && dataSetString[j] > key) {
-            dataSetString[j + 1] = dataSetString[j];
+        while (j >= left && arr[j] > key) {
+            arr[j + 1] = arr[j];
             j = j - 1;
         }
-        dataSetString[j + 1] = key;
+        arr[j + 1] = key;
     }
 
     return;
@@ -879,35 +888,29 @@ void sorting::heapMakerStr(string n, int i)
     if (largest != i) {
         swap(dataSetString[i], dataSetString[largest]);
 
-        // Recursively heapify the affected sub-tree
         heapMakerStr(n, largest);
     }
 }
 
-// main function to do heap sort
 void sorting::heapSortStr(string* begin, string* end)
 {
     int n = dataSetString.size();
     string x = *begin;
 
 
-    // Build heap (rearrange array)
     for (int i = n / 2 - 1; i >= 0; i--)
         heapMakerStr(x, i);
 
-    // One by one extract an element from heap
     for (int i = n - 1; i > 0; i--) {
-        // Move current root to end
         swap(dataSetString[0], dataSetString[i]);
 
-        // call max heapify on the reduced heap
         heapMakerStr(to_string(i), 0);
     }
 }
 
-void sorting::print(){
-    cout << "Size: " << dataSetInt.size();
-    for (int i = 0; i < dataSetInt.size(); i++){
-        cout << dataSetInt[i] << " , " << endl;
-    }
-}
+//void sorting::print(){
+//    cout << "Size: " << dataSetInt.size();
+//    for (int i = 0; i < dataSetInt.size(); i++){
+//        cout << dataSetInt[i] << " , " << endl;
+//    }
+//}

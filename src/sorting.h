@@ -75,8 +75,9 @@ public:
     void heapSortStr(string* begin, string* end);
 
     void callIntroSortInt();
+    void callIntroSortStr();
 
-    void print();
+    //void print();
 
 };
 
