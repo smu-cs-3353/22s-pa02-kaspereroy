@@ -64,18 +64,19 @@ public:
     void heapMakerInt(int n, int i);
     void heapSortInt(int* begin, int*end);
 
-//    void swapValueStr(string* a, string* b);
-//    void InsertionSortStr(string arr[], string* begin, string* end);
-//    string* PartitionStr(int low, int high);
-//
-//    string* MedianOfThreeStr(string* a, string* b, string* c);
-//    void IntrosortUtilStr(int arr[], int* begin, int* end,
-//                          int depthLimit);
-//    void IntrosortStr(int arr[], int* begin, int* end);
-//    void printArrayStr(int n);
-//
-//    void heapMakerStr(int n, int i);
-//    void heapSort(string* begin, string* end);
+    void swapValueStr(string* a, string* b);
+    void InsertionSortStr(string arr[], string* begin, string* end);
+    string* PartitionStr(string arr[], int low, int high);
+    string* MedianOfThreeStr(string* a, string* b, string* c);
+    void IntrosortUtilStr(string arr[], string* begin, string* end, int depthLimit);
+    void IntrosortStr(string arr[], string* begin, string* end);
+    void printArrayStr(int n);
+    void heapMakerStr(string n, int i);
+    void heapSortStr(string* begin, string* end);
+
+    void callIntroSortInt();
+
+    void print();
 
 };
 

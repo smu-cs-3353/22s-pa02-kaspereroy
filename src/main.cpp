@@ -6,6 +6,10 @@ using namespace std;
 int main(){
     sorting test;
     test.readFile("int-60.csv");
+    test.runAlgorithms();
+    //test.print();
+    //test.callIntroSortInt();
+
     //test.readFile("input.csv");
     //test.runAlgorithms();
 
@@ -16,8 +20,9 @@ int main(){
 
         // Pass the array, the pointer to the first element and
         // the pointer to the last element
-        test.IntrosortInt(arr, arr, arr + n - 1);
-        test.printArrayInt(arr, n);
+        //test.IntrosortInt(arr, arr, arr + n - 1);
+
+        //test.printArrayInt(arr, n);
 
  return 0;
 }
