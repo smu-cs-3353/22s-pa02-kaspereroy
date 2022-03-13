@@ -16,8 +16,8 @@ int main(){
 
         // Pass the array, the pointer to the first element and
         // the pointer to the last element
-        test.Introsort(arr, arr, arr + n - 1);
-        test.printArray(arr, n);
+        test.IntrosortInt(arr, arr, arr + n - 1);
+        test.printArrayInt(arr, n);
 
  return 0;
 }
