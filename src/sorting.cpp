@@ -203,8 +203,17 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         dataSetString = tempString;
         dataSetInt = tempInt;
 
-        callIntroSortStr();
+        start = std::chrono::high_resolution_clock::now();
+        callIntroSortInt();
+        stop = std::chrono::high_resolution_clock::now();
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro Integer: " << " " << duration.count() << endl;
 
+        start = std::chrono::high_resolution_clock::now();
+        callIntroSortStr();
+        stop = std::chrono::high_resolution_clock::now();
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro String: " << " " << duration.count() << endl;
 
     }
 }
@@ -736,7 +745,6 @@ void sorting::heapSortInt(int* begin, int*end)
 }
 
 //-----
-//FIXME -------------------String----------------------------------
 void sorting::callIntroSortStr(){
     int n = dataSetString.size();
     string arr[n];
@@ -875,19 +883,16 @@ void sorting::printArrayStr(int n)
 
 void sorting::heapMakerStr(string n, int i)
 {
-    int largest = i; // Initialize largest as root
-    int l = 2 * i + 1; // left = 2*i + 1
-    int r = 2 * i + 2; // right = 2*i + 2
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
 
-    // If left child is larger than root
     if (l < stoi(n) && dataSetString[l] > dataSetString[largest])
         largest = l;
 
-    // If right child is larger than largest so far
     if (r < stoi(n) && dataSetString[r] > dataSetString[largest])
         largest = r;
 
-    // If largest is not root
     if (largest != i) {
         swap(dataSetString[i], dataSetString[largest]);
 
@@ -910,10 +915,3 @@ void sorting::heapSortStr(string* begin, string* end)
         heapMakerStr(to_string(i), 0);
     }
 }
-
-//void sorting::print(){
-//    cout << "Size: " << dataSetInt.size();
-//    for (int i = 0; i < dataSetInt.size(); i++){
-//        cout << dataSetInt[i] << " , " << endl;
-//    }
-//}
