@@ -38,6 +38,7 @@ void sorting::readFile(string fileName){
                 fullLine.erase(0, pos + delimiter.length());
             }
             temp = fullLine.substr(0, pos);
+            temp.erase(remove(temp.begin(), temp.end(), '\r'), temp.end());
             tempString.push_back(temp); // Make sure to get the last element of that line
             tempInt.push_back(stoi(temp));
             fullDataString.push_back(tempString);
@@ -258,9 +259,9 @@ void sorting::insertionString() {  //vector <string> arrstr, int k
     }
 
     int z;
-    for (z = 0; z < k; z++)
-        cout << dataSetString[z] << " ";
-    cout << endl;
+//    for (z = 0; z < k; z++)
+//        cout << dataSetString[z] << " ";
+//    cout << endl;
 
 
 }
@@ -282,9 +283,9 @@ void sorting::insertionInt() {  //vector <string> arrstr, int k
     }
 
     int z;
-    for (z = 0; z < k; z++)
-        cout << dataSetInt[z] << " ";
-    cout << endl;
+//    for (z = 0; z < k; z++)
+//        cout << dataSetInt[z] << " ";
+//    cout << endl;
 
 }
 
@@ -292,15 +293,15 @@ void sorting::insertionInt() {  //vector <string> arrstr, int k
 
 void sorting::mergeString(){
     MergeSortVString( 0, dataSetString.size()-1);
-    for (int i = 0; i < dataSetString.size(); ++i) {
-        cout << dataSetString[i] << ' ';
-    }
+//    for (int i = 0; i < dataSetString.size(); ++i) {
+//        cout << dataSetString[i] << ' ';
+//    }
 }
 void sorting::mergeInt(){
     MergeSortVInt( 0, dataSetInt.size()-1);
-    for (int i = 0; i < dataSetInt.size(); ++i) {
-        cout << dataSetInt[i] << ' ';
-    }
+//    for (int i = 0; i < dataSetInt.size(); ++i) {
+//        cout << dataSetInt[i] << ' ';
+//    }
 }
 
 void sorting::MergeSortedIntervalsString(int s, int m, int e) {
@@ -417,8 +418,8 @@ void sorting::shellSortString()
         }
     }
 
-    for (int i=0; i<n; i++)
-        cout << dataSetString[i] << " ";
+//    for (int i=0; i<n; i++)
+//        cout << dataSetString[i] << " ";
 
 }
 void sorting::shellSortInt()
@@ -439,8 +440,8 @@ void sorting::shellSortInt()
         }
     }
 
-    for (int i=0; i<n; i++)
-        cout << dataSetInt[i] << " ";
+//    for (int i=0; i<n; i++)
+//        cout << dataSetInt[i] << " ";
 
 }
 //------
@@ -528,16 +529,16 @@ int sorting::randomPartitionInt(vector <int>& v, int low, int high){
 }
 void sorting::randQuickSortCallString() {
     randQuickSortString(dataSetString, 0, dataSetString.size()-1);
-    for(int i = 0; i < dataSetString.size(); i++){
-        cout << dataSetString[i] << " ";
-    }
-    cout << endl;
+//    for(int i = 0; i < dataSetString.size(); i++){
+//        cout << dataSetString[i] << " ";
+//    }
+//    cout << endl;
 }
 void sorting::randQuickSortCallInt() {
     randQuickSortInt(dataSetInt, 0, dataSetInt.size()-1);
-    for(int i = 0; i < dataSetInt.size(); i++){
-        cout << dataSetInt[i] << " ";
-    }
+//    for(int i = 0; i < dataSetInt.size(); i++){
+//        cout << dataSetInt[i] << " ";
+//    }
 }
 
 
@@ -569,8 +570,8 @@ void sorting::timSortInt()
         }
     }
 
-    for (int i=0; i<n; i++)
-        cout << dataSetInt[i] << " ";
+//    for (int i=0; i<n; i++)
+//        cout << dataSetInt[i] << " ";
 }
 
 void sorting::timSortString()
@@ -599,9 +600,9 @@ void sorting::timSortString()
                 MergeSortedIntervalsString(left, mid, right);
         }
     }
-
-    for (int i=0; i<n; i++)
-        cout << dataSetString[i] << " ";
+//
+//    for (int i=0; i<n; i++)
+//        cout << dataSetString[i] << " ";
 }
 
 //-----
