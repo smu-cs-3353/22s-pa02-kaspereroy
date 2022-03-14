@@ -77,6 +77,33 @@ public:
     void callIntroSortInt();
     void callIntroSortStr();
 
+    int partition(vector<int> v, int low, int high);
+
+    void introSortCall();
+
+    void quickSort(vector<int>&v, int low, int high);
+
+    void heapSort(vector<int>&v, int size);
+
+    void heapify(vector<int>& v, int size, int root);
+
+    void InsertionSort(vector<int> &v);
+
+    void introSort(vector<int> &v, int depthMax);
+
+    void InsertionSortStr(vector<string> &v);
+
+    void heapifyStr(vector<string> &v, int size, int root);
+
+    void introSortCallStr();
+
+    void introSortStr(vector<string> &v, int depthMax);
+
+    int partitionStr(vector<string> v, int low, int high);
+
+    void quickSortStr(vector<string> &v, int low, int high);
+
+    void heapSortStr(vector<string> &v, int size);
 };
 
 

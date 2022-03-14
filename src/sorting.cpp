@@ -38,6 +38,7 @@ void sorting::readFile(string fileName){
                 fullLine.erase(0, pos + delimiter.length());
             }
             temp = fullLine.substr(0, pos);
+            temp.erase(remove(temp.begin(), temp.end(), '\r'), temp.end());
             tempString.push_back(temp); // Make sure to get the last element of that line
             tempInt.push_back(stoi(temp));
             fullDataString.push_back(tempString);
@@ -67,8 +68,8 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 //        outputInt << fullDataInt[i].size()<<',';
         vector<int>  tempInt = fullDataInt[i];
         vector<string> tempString = fullDataString[i];
-//        dataSetString = tempString;
-//        dataSetInt = tempInt;
+        dataSetString = tempString;
+        dataSetInt = tempInt;
 ////run all of the algorithms for both data types while timing each algorithm (and don't forget to output the time data to a csv)
 //
 //        //Randomized Quick Sorting
@@ -204,327 +205,187 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 //        dataSetString = tempString;
 //        dataSetInt = tempInt;
 //
-//        start = std::chrono::high_resolution_clock::now();
-//        callIntroSortInt();
-//        stop = std::chrono::high_resolution_clock::now();
-//        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-//        cout << endl << "Intro Integer: " << " " << duration.count() << endl;
+        auto start = std::chrono::high_resolution_clock::now();
+        introSortCall();
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro Integer: " << " " << duration.count() << endl;
+//        for(int j = 0; j < dataSetInt.size(); j++){
+//            cout << dataSetInt[j] << ' ';
+//        }
 //
-//        start = std::chrono::high_resolution_clock::now();
-//        callIntroSortStr();
-//        stop = std::chrono::high_resolution_clock::now();
-//        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-//        cout << endl << "Intro String: " << " " << duration.count() << endl;
-
-
-    }
-}
-void sorting::introSortCallInt(int arr[], int *begin, int *end){
-    int maxdepth = log(end-begin)*2;
-    introSortInt(arr, begin, end, maxdepth);
-    return;
-}
-
-void sorting::introSortInt(int arr[], int *begin, int *end, int maxdepth){
-    int n = end - begin;
-
-    if(n < 16){
-        insertionSort(arr, begin, end);
-        return;
-    }
-    if(maxdepth ==0){
+        start = std::chrono::high_resolution_clock::now();
+        introSortCallStr();
+        stop = std::chrono::high_resolution_clock::now();
+        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        cout << endl << "Intro String: " << " " << duration.count() << endl;
+        for(int j = 0; j < dataSetString.size(); j++){
+            cout << dataSetString[j] << ' ';
+        }
 
     }
 }
-void sorting::heapSort(int arr[], int n){
-    for(int i = n/2 -1; i>=0;i--){
-        heapify(arr, n, i);
+int sorting::partition(vector<int> v, int low, int high){
+    int pivot = v[high];
+    int smaller = low-1;
+    for(int i = low; i<= high-1; i++){
+        if(v[i] <=pivot){
+            smaller++;
+            swap(v[smaller], v[i]);
+        }
     }
-    for(int i = n-1; i >=0; i--){
-        swap(arr[0], arr[i]);
-        heapify(arr, i, 0);
+    swap(v[smaller+1],v[high]);
+    return smaller+1;
+}
+void sorting::introSortCall(){
+    introSort(dataSetInt, dataSetInt.size());
+}
+void sorting::introSort(vector<int>& v, int depthMax){
+    int size = partition(v, 0, depthMax -1);
+    if(size < 16){
+        InsertionSort(v);
+    }
+    else if(size > (2*log(depthMax))){
+        heapSort(v, depthMax);
+    }
+    else{
+            quickSort(v, 0, depthMax-1);
     }
 }
-void sorting::heapify(int arr[], int n, int i){
-    int largest = i;
-    int left = 2*i+1;
-    int right = 2*i+2;
-
-    if(left<n && arr[left]>arr[largest]){
-        largest = left;
-    }
-    if(right < n && arr[right] > arr[largest]){
-        largest = right;
-    }
-    if(largest != i ){
-        swap(arr[i], arr[largest]);
-        heapify(arr, n, largest);
-    }
-}
-//void introSortInt(int arr[], int startIndex, int endIndex, int maxdepth){
-//    int n = sizeof(arr);
-//    if(n < 20){
-//        insertonSort(arr);
-//    }
-//    else if(maxdepth == 0){
-//        heapsort(arr);
-//    }
-//    else{
-//        p = partition(arr);
-//        introSortInt(arr)
-//    }
-//}
-
-void sorting::IntrosortUtilInt(int arr[], int* begin, int* end, int depthLimit)
-{
-    int size = end - begin;
-    cout << "FUCKING SIZE " << size << endl << flush;
-    if (size < 16) {
-        InsertionSortInt(arr, begin, end);
-        return;
+void sorting::quickSort(vector<int>& v, int low, int high){
+    if(low < high){
+        int partIndex = partition(v, low, high);
+        quickSort(v, low, partIndex -1);
+        quickSort(v, partIndex + 1, high);
     }
 
-    if (depthLimit == 0) {
-        heapSortInt(begin, end+1);
-        return;
+}
+void sorting::heapSort(vector<int>& v, int size){
+    for(int i = size/2-1; i>=0; i--){
+        heapify(v, size, i);
     }
-
-    int* pivot = MedianOfThreeInt(begin, begin + size / 2, end);
-
-    swapValueInt(pivot, end);
-
-    int* partitionPoint = PartitionInt(arr, begin - arr, end - arr);
-    IntrosortUtilInt(arr, begin, partitionPoint - 1,depthLimit - 1);
-    IntrosortUtilInt(arr, partitionPoint + 1, end,depthLimit - 1);
-
-    return;
-}
-
-
-void sorting::IntrosortInt(int arr[], int* begin, int* end)
-{
-    int depthLimit = 2 * log(end - begin);
-    cout << end-begin;
-    IntrosortUtilInt(arr, begin, end, depthLimit);
-
-    return;
-}
-
-
-void sorting::printArrayInt(int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " \n"[i + 1 == n];
-}
-
-void sorting::heapMakerInt(int n, int i)
-{
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
-
-    if (l < n && dataSetInt[l] > dataSetInt[largest])
-        largest = l;
-
-    if (r < n && dataSetInt[r] > dataSetInt[largest])
-        largest = r;
-
-    if (largest != i) {
-        swap(dataSetInt[i], dataSetInt[largest]);
-
-        heapMakerInt(n, largest);
+    for(int i = size - 1; i >= 0; i--){
+        swap(v[0], v[i]);
+        heapify(v, i, 0);
     }
 }
-
-void sorting::heapSortInt(int* begin, int*end)
-{
-    int n = dataSetInt.size();
-    int x = *begin;
-
-
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapMakerInt(x, i);
-
-    for (int i = n - 1; i > 0; i--) {
-        swap(dataSetInt[0], dataSetInt[i]);
-
-        heapMakerInt(i, 0);
+void sorting::heapify(vector<int>&v, int size, int root){
+    int biggest = root;//biggest = root
+    int left = (2*root)+1;
+    int right = (2*root)+2;
+    if(left<size &&v[left]>v[biggest]){ //left bigger than root
+        biggest = left;
+    }
+    if(right < size && v[right]>v[biggest]){//right bigger than root
+        biggest = right;
+    }
+    if(biggest != root){
+        swap(v[root], v[biggest]);
+        heapify(v, size, biggest);//heapify the new subtree
     }
 }
+void sorting::InsertionSort(vector<int>&v){
+    long k = v.size();
+    int i, j, key;
+    for (i = 1; i < k; i++)
+    {
+        key = v[i];
+        j = i - 1;
 
-//-----
-void sorting::callIntroSortStr(){
-    int n = dataSetString.size();
-    string arr[n];
-    for (int i = 0; i < dataSetString.size(); i++){
-        arr[i] = dataSetString[i];
-    }
-
-    IntrosortStr(arr, arr, arr + n - 1);
-
-//    for (int u = 0; u < n; u++){
-//        cout << arr[u] << " ";
-//    }
-}
-
-
-
-void sorting::swapValueStr(string* a, string* b)
-{
-    string* temp = a;
-    a = b;
-    b = temp;
-    return;
-}
-
-/* Function to sort an array using insertion sort*/
-void sorting::InsertionSortStr(string arr[], string* begin, string* end)
-{
-
-    int left = begin - arr;
-    int right = end - arr;
-
-    for (int i = left + 1; i <= right; i++) {
-        string key = arr[i];
-        int j = i - 1;
-
-
-        while (j >= left && arr[j] > key) {
-            arr[j + 1] = arr[j];
+        while (j >= 0 && v[j] > key)
+        {
+            v[j + 1] = v[j];
             j = j - 1;
         }
-        arr[j + 1] = key;
+        v[j + 1] = key;
     }
-
-    return;
+//
+//    int z;
+//    for (z = 0; z < k; z++)
+//        cout << v[z] << " ";
+//    cout << endl;
 }
-
-// A function to partition the array and return
-// the partition point
-string* sorting::PartitionStr(string arr[], int low, int high)
-{
-    string pivot = arr[high];
-    int i = (low - 1);
-
-    for (int j = low; j <= high - 1; j++) {
-
-        if (arr[j] <= pivot) {
-            i++;
-
-            swap(arr[i], arr[j]);
+int sorting::partitionStr(vector<string> v, int low, int high){
+    string pivot = v[high];
+    int smaller = low-1;
+    for(int i = low; i<= high-1; i++){
+        if(v[i] <=pivot){
+            smaller++;
+            swap(v[smaller], v[i]);
         }
     }
-    swap(arr[i + 1], arr[high]);
-    return (arr + i + 1);
+    swap(v[smaller+1],v[high]);
+    return smaller+1;
 }
-
-
-string* sorting::MedianOfThreeStr(string* a, string* b, string* c)
-{
-    if (*a < *b && *b < *c)
-        return (b);
-
-    if (*a < *c && *c <= *b)
-        return (c);
-
-    if (*b <= *a && *a < *c)
-        return (a);
-
-    if (*b < *c && *c <= *a)
-        return (c);
-
-    if (*c <= *a && *a < *b)
-        return (a);
-
-    if (*c <= *b && *b <= *a)
-        return (b);
+void sorting::introSortCallStr(){
+    introSortStr(dataSetString, dataSetString.size());
 }
-
-// A Utility function to perform intro sort
-void sorting::IntrosortUtilStr(string arr[], string* begin, string* end, int depthLimit)
-{
-    // Count the number of elements
-    int size = end - begin;
-
-    // If partition size is low then do insertion sort
-    if (size < 16) {
-        InsertionSortStr(arr, begin, end);
-        return;
+void sorting::introSortStr(vector<string>& v, int depthMax){
+    int size = partitionStr(v, 0, depthMax -1);
+    if(size < 16){
+        InsertionSortStr(v);
     }
-
-    // If the depth is zero use heapsort
-    if (depthLimit == 0) {
-        heapSortStr(begin, end+1);
-        return;
+    else if(size > (2*log(depthMax))){
+        heapSortStr(v, depthMax);
     }
-
-    // Else use a median-of-three concept to
-    // find a good pivot
-    string* pivot = MedianOfThreeStr(begin, begin + size / 2, end);
-
-    // Swap the values pointed by the two pointers
-    swapValueStr(pivot, end);
-
-    // Perform Quick Sort
-    string* partitionPoint = PartitionStr(arr, begin - arr, end - arr);
-    IntrosortUtilStr(arr, begin, partitionPoint - 1, depthLimit - 1);
-    IntrosortUtilStr(arr, partitionPoint + 1, end, depthLimit - 1);
-
-    return;
-}
-
-void sorting::IntrosortStr(string arr[], string* begin, string* end)
-{
-    int depthLimit = 2 * log(end - begin);
-
-    IntrosortUtilStr(arr, begin, end, depthLimit);
-
-    return;
-}
-
-// A utility function ot print an array of size n
-void sorting::printArrayStr(int n)
-{
-    for (int i = 0; i < n; i++)
-        cout << dataSetString[i] << " \n"[i + 1 == n];
-}
-
-void sorting::heapMakerStr(string n, int i)
-{
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
-
-    if (l < stoi(n) && dataSetString[l] > dataSetString[largest])
-        largest = l;
-
-    if (r < stoi(n) && dataSetString[r] > dataSetString[largest])
-        largest = r;
-
-    if (largest != i) {
-        swap(dataSetString[i], dataSetString[largest]);
-
-        heapMakerStr(n, largest);
+    else{
+        quickSortStr(v, 0, depthMax-1);
     }
 }
+void sorting::quickSortStr(vector<string>& v, int low, int high){
+    if(low < high){
+        int partIndex = partitionStr(v, low, high);
+        quickSortStr(v, low, partIndex -1);
+        quickSortStr(v, partIndex + 1, high);
+    }
 
-void sorting::heapSortStr(string* begin, string* end)
-{
-    int n = dataSetString.size();
-    string x = *begin;
-
-
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapMakerStr(x, i);
-
-    for (int i = n - 1; i > 0; i--) {
-        swap(dataSetString[0], dataSetString[i]);
-
-        heapMakerStr(to_string(i), 0);
+}
+ void sorting::heapSortStr(vector<string>& v, int size){
+    for(int i = size/2-1; i>=0; i--){
+        heapifyStr(v, size, i);
+    }
+    for(int i = size - 1; i >= 0; i--){
+        swap(v[0], v[i]);
+        heapifyStr(v, i, 0);
     }
 }
+void sorting::heapifyStr(vector<string>&v, int size, int root){
+    int biggest = root;//biggest = root
+    int left = (2*root)+1;
+    int right = (2*root)+2;
+    if(left<size &&v[left]>v[biggest]){ //left bigger than root
+        biggest = left;
+    }
+    if(right < size && v[right]>v[biggest]){//right bigger than root
+        biggest = right;
+    }
+    if(biggest != root){
+        swap(v[root], v[biggest]);
+        heapifyStr(v, size, biggest);//heapify the new subtree
+    }
+}
+void sorting::InsertionSortStr(vector<string>&v){
+    long k = v.size();
+    int i, j;
+    string key;
+    for (i = 1; i < k; i++)
+    {
+        key = v[i];
+        j = i - 1;
 
-
+        while (j >= 0 && v[j] > key)
+        {
+            v[j + 1] = v[j];
+            j = j - 1;
+        }
+        v[j + 1] = key;
+    }
+//
+//    int z;
+//    for (z = 0; z < k; z++)
+//        cout << v[z] << " ";
+//    cout << endl;
+}
 void sorting::insertionString() {  //vector <string> arrstr, int k
 
     long k = dataSetString.size();
@@ -891,19 +752,19 @@ void sorting::timSortString()
 }
 
 //-----
-void sorting::callIntroSortInt(){
-    int n = dataSetInt.size();
-    int arr[n];
-    for (int i = 0; i < dataSetInt.size(); i++){
-        arr[i] = dataSetInt[i];
-    }
-
-    IntrosortInt(arr, arr, arr + n - 1);
-
-//    for (int u = 0; u < n; u++){
-//        cout << arr[u] << " ";
+//void sorting::callIntroSortInt(){
+//    int n = dataSetInt.size();
+//    int arr[n];
+//    for (int i = 0; i < dataSetInt.size(); i++){
+//        arr[i] = dataSetInt[i];
 //    }
-}
+//
+//    IntrosortInt(arr, arr, arr + n - 1);
+//
+////    for (int u = 0; u < n; u++){
+////        cout << arr[u] << " ";
+////    }
+//}
 
 void sorting::swapValueInt(int* a, int* b)
 {
