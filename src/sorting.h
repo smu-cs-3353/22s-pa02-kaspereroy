@@ -52,30 +52,49 @@ public:
     void instInt(int left, int right);
     void  instString(int left, int right);
 
-    void swapValueInt(int* a, int* b);
-    void InsertionSortInt(int arr[], int* begin, int* end);
-    int* PartitionInt(int arr[], int low, int high);
-    int* MedianOfThreeInt(int* a, int* b, int* c);
-    void IntrosortUtilInt(int arr[], int* begin, int* end,
-                       int depthLimit);
-    void IntrosortInt(int arr[], int* begin, int* end);
-    void printArrayInt(int arr[], int n);
 
-    void heapMakerInt(int n, int i);
-    void heapSortInt(int* begin, int*end);
 
-    void swapValueStr(string* a, string* b);
-    void InsertionSortStr(string arr[], string* begin, string* end);
-    string* PartitionStr(string arr[], int low, int high);
-    string* MedianOfThreeStr(string* a, string* b, string* c);
-    void IntrosortUtilStr(string arr[], string* begin, string* end, int depthLimit);
-    void IntrosortStr(string arr[], string* begin, string* end);
-    void printArrayStr(int n);
-    void heapMakerStr(string n, int i);
-    void heapSortStr(string* begin, string* end);
+    void introSortCall();
+    void introSortCallStr();
+    void introSort(vector<int> &v, int depthMax);
+    void introSortStr(vector<string> &v, int depthMax);
+    void heapSort(vector<int>&v, int size);
+    void heapSortStr(vector<string> &v, int size);
+    void heapify(vector<int>& v, int size, int root);
+    void heapifyStr(vector<string> &v, int size, int root);
+    void InsertionSort(vector<int> &v);
+    void InsertionSortStr(vector<string> &v);
+    int partition(vector<int> v, int low, int high);
+    int partitionStr(vector<string> v, int low, int high);
+    void quickSort(vector<int>&v, int low, int high);
+    void quickSortStr(vector<string> &v, int low, int high);
 
-    void callIntroSortInt();
-    void callIntroSortStr();
+
+
+//    void swapValueInt(int* a, int* b);
+//    void InsertionSortInt(int arr[], int* begin, int* end);
+//    int* PartitionInt(int arr[], int low, int high);
+//    int* MedianOfThreeInt(int* a, int* b, int* c);
+//    void IntrosortUtilInt(int arr[], int* begin, int* end,
+//                       int depthLimit);
+//    void IntrosortInt(int arr[], int* begin, int* end);
+//    void printArrayInt(int arr[], int n);
+//
+//    void heapMakerInt(int n, int i);
+//    void heapSortInt(int* begin, int*end);
+//
+//    void swapValueStr(string* a, string* b);
+//    void InsertionSortStr(string arr[], string* begin, string* end);
+//    string* PartitionStr(string arr[], int low, int high);
+//    string* MedianOfThreeStr(string* a, string* b, string* c);
+//    void IntrosortUtilStr(string arr[], string* begin, string* end, int depthLimit);
+//    void IntrosortStr(string arr[], string* begin, string* end);
+//    void printArrayStr(int n);
+//    void heapMakerStr(string n, int i);
+//    void heapSortStr(string* begin, string* end);
+//
+//    void callIntroSortInt();
+//    void callIntroSortStr();
 
 };
 
