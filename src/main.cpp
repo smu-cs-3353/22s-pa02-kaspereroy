@@ -5,7 +5,7 @@
 using namespace std;
 int main(){
     sorting test;
-    test.readFile("int-60.csv");
+    test.readFile("input.csv");
     test.runAlgorithms();
     //test.print();
     //test.callIntroSortInt();
