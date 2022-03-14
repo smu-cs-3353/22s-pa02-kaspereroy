@@ -195,7 +195,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         stop = std::chrono::high_resolution_clock::now();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        cout << endl << "Tim Sort String: not sorting as string" << " " << duration.count() << endl;
+        cout << endl << "Tim Sort String: " << " " << duration.count() << endl;
         outputString << duration.count();
 
 //        dataSetString.clear();
@@ -210,7 +210,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         stop = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Intro Integer: " << " " << duration.count() << endl;
-        outputString << duration.count();
+        outputString << duration.count() << endl;
 //        for(int j = 0; j < dataSetInt.size(); j++){
 //            cout << dataSetInt[j] << ' ';
 //        }
@@ -220,7 +220,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         stop = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Intro String: " << " " << duration.count() << endl;
-        outputString << duration.count();
+        outputString << duration.count() <<endl;
 //        for(int j = 0; j < dataSetString.size(); j++){
 //            cout << dataSetString[j] << ' ';
 //        }
