@@ -182,11 +182,9 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 
 
 void sorting::insertionString() {  //Insertion sort for string vector
-
-    long k = dataSetString.size();
     int i, j;
     string key;
-    for (i = 1; i < k; i++)
+    for (i = 1; i < dataSetString.size(); i++)
     {
         key = dataSetString[i];
         j = i - 1;
@@ -201,9 +199,8 @@ void sorting::insertionString() {  //Insertion sort for string vector
 }
 
 void sorting::insertionInt() {
-    long k = dataSetInt.size();
     int i, j, key;
-    for (i = 1; i < k; i++)
+    for (i = 1; i < dataSetInt.size(); i++)
     {
         key = dataSetInt[i];
         j = i - 1;
