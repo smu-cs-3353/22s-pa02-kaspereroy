@@ -49,9 +49,9 @@ void sorting::readFile(string fileName){
     }
     cout << "The size of fullDataString: " << fullDataString.size() << endl;
     cout << "The size of fullDataInt: " << fullDataInt.size() << endl;
-    for(int i = 0; i < fullDataInt[0].size(); i++){
-        cout << fullDataInt[0][i] << " ";
-    }
+//    for(int i = 0; i < fullDataInt[0].size(); i++){
+//        cout << fullDataInt[0][i] << " ";
+//    }
     cout << endl;
 }
 
@@ -59,9 +59,9 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
     ofstream outputInt;
     ofstream outputString;
     outputInt.open("../output/outputInt.csv");
-    outputInt << "size,randQuickSort,insertion,merge,shell,intro,tim\n";
+    outputInt << "size,randQuickSort,insertion,merge,shell,tim,intro\n";
     outputString.open("../output/outputString.csv");
-    outputString << "size,randQuickSort,insertion,merge,shell,intro,tim\n";
+    outputString << "size,randQuickSort,insertion,merge,shell,tim,intro\n";
     // output header of all sorting algorithms in order that they go
     for(int i = 0; i < fullDataString.size(); i++){
         outputString << fullDataString[i].size()<<',';
@@ -188,7 +188,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Tim Sort Integer: " << " " << duration.count() << endl;
-        outputInt<< duration.count();
+        outputInt<< duration.count()<<',';
 
         start = std::chrono::high_resolution_clock::now();
         timSortString();
@@ -196,7 +196,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Tim Sort String: " << " " << duration.count() << endl;
-        outputString << duration.count();
+        outputString << duration.count() << ',';
 
 //        dataSetString.clear();
 //        dataSetInt.clear();
@@ -210,7 +210,7 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         stop = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Intro Integer: " << " " << duration.count() << endl;
-        outputString << duration.count() << endl;
+        outputInt << duration.count() << endl;
 //        for(int j = 0; j < dataSetInt.size(); j++){
 //            cout << dataSetInt[j] << ' ';
 //        }
