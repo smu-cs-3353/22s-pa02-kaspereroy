@@ -57,10 +57,11 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
     for(int i = 0; i < fullDataString.size(); i++){
         outputString << fullDataString[i].size()<<',';
         outputInt << fullDataInt[i].size()<<',';
-        vector<int>  tempInt = fullDataInt[i];
+        vector<int>  tempInt = fullDataInt[i]; // temp vectors will hold unsorted dataset to reassign to dataSet vectors before each sort
         vector<string> tempString = fullDataString[i];
         dataSetString = tempString;
         dataSetInt = tempInt;
+
 //run all of the algorithms for both data types while timing each algorithm (and don't forget to output the time data to a csv)
 
         //Randomized Quick Sorting
@@ -199,7 +200,7 @@ void sorting::insertionString() {  //Insertion sort for string vector
     }
 }
 
-void sorting::insertionInt() {  //vector <string> arrstr, int k
+void sorting::insertionInt() {
     long k = dataSetInt.size();
     int i, j, key;
     for (i = 1; i < k; i++)
@@ -227,8 +228,6 @@ void sorting::mergeInt(){ //merge sort call for integer vector
 
 void sorting::MergeSortedIntervalsString(int s, int m, int e) {
 
-    // temp is used to temporary store the vector obtained by merging
-    // elements from [s to m] and [m+1 to e] in v
     vector<string> temp;
     int i, j;
     i = s;
@@ -256,8 +255,6 @@ void sorting::MergeSortedIntervalsString(int s, int m, int e) {
 }
 void sorting::MergeSortedIntervalsInt(int s, int m, int e) {
 
-    // temp is used to temporary store the vector obtained by merging
-    // elements from [s to m] and [m+1 to e] in v
     vector<int> temp;
 
     int i, j;

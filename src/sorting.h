@@ -10,11 +10,14 @@ using namespace std;
 
 class sorting {
 private:
+
     vector <vector<string>> fullDataString;
     vector <vector<int>> fullDataInt;
     vector <string> dataSetString;
     vector <int> dataSetInt;
+
 public:
+
     void readFile(string fileName);
     void runAlgorithms();
 
