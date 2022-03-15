@@ -1,5 +1,5 @@
 //London Kasper, Hazel Eroy 22s-pa02-kaspereroy
-//Research on QuickSort function done on GeeksForGeeks.com
+//Notable Research sites:  Wikipedia, GeeksForGeeks, C++ Reference
 #include <algorithm>
 #include "sorting.h"
 #include <iostream>
