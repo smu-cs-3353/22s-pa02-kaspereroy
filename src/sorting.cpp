@@ -1,9 +1,6 @@
+//London Kasper, Hazel Eroy 22s-pa02-kaspereroy
 //Research on QuickSort function done on GeeksForGeeks.com
 #include <algorithm>
-//
-// Created by Hazel Eroy on 3/2/22.
-//
-
 #include "sorting.h"
 #include <iostream>
 #include <string>
@@ -47,12 +44,6 @@ void sorting::readFile(string fileName){
         }
 
     }
-    cout << "The size of fullDataString: " << fullDataString.size() << endl;
-    cout << "The size of fullDataInt: " << fullDataInt.size() << endl;
-//    for(int i = 0; i < fullDataInt[0].size(); i++){
-//        cout << fullDataInt[0][i] << " ";
-//    }
-    cout << endl;
 }
 
 void sorting::runAlgorithms(){ // This function runs all of the datasets through each of the algorithms and records time data to an output csv
@@ -96,22 +87,13 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         insertionInt();
         stop = std::chrono::high_resolution_clock::now();
 
-//        dataSetString.clear();
-//        dataSetInt.clear();
-
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Insertion Sort Integer: " << " " << duration.count() << endl;
         outputInt<< duration.count()<<",";
 
-        dataSetString = tempString;
-        dataSetInt = tempInt;
-
         start = std::chrono::high_resolution_clock::now();
         insertionString();
         stop = std::chrono::high_resolution_clock::now();
-
-//        dataSetString.clear();
-//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Insertion Sort String: " << " " << duration.count() << endl;
@@ -125,22 +107,13 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         mergeInt();
         stop = std::chrono::high_resolution_clock::now();
 
-//        dataSetString.clear();
-//        dataSetInt.clear();
-
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Merge Sort Integer: " << " " << duration.count() << endl;
         outputInt<< duration.count()<<",";
 
-        dataSetString = tempString;
-        dataSetInt = tempInt;
-
         start = std::chrono::high_resolution_clock::now();
         mergeString();
         stop = std::chrono::high_resolution_clock::now();
-
-//        dataSetString.clear();
-//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Merge Sort String: " << " " << duration.count() << endl;
@@ -153,32 +126,20 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         start = std::chrono::high_resolution_clock::now();
         shellSortInt();
         stop = std::chrono::high_resolution_clock::now();
-//
-//        dataSetString.clear();
-//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Shell Sort Integer: " << " " << duration.count() << endl;
         outputInt<< duration.count()<<",";
 
-        dataSetString = tempString;
-        dataSetInt = tempInt;
-
         start = std::chrono::high_resolution_clock::now();
         shellSortString();
         stop = std::chrono::high_resolution_clock::now();
-
-//        dataSetString.clear();
-//        dataSetInt.clear();
 
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Shell Sort String: " << " " << duration.count() << endl;
         outputString << duration.count()<<",";
 
-        //introsort
         //timsort
-        dataSetString.clear();
-        dataSetInt.clear();
         dataSetString = tempString;
         dataSetInt = tempInt;
 
@@ -198,12 +159,9 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         cout << endl << "Tim Sort String: " << " " << duration.count() << endl;
         outputString << duration.count() << ',';
 
-//        dataSetString.clear();
-//        dataSetInt.clear();
-
+        //introSort
         dataSetString = tempString;
         dataSetInt = tempInt;
-
 
         start = std::chrono::high_resolution_clock::now();
         introSortCall();
@@ -211,36 +169,18 @@ void sorting::runAlgorithms(){ // This function runs all of the datasets through
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Intro Integer: " << " " << duration.count() << endl;
         outputInt << duration.count() << endl;
-//        for(int j = 0; j < dataSetInt.size(); j++){
-//            cout << dataSetInt[j] << ' ';
-//        }
-//
+
         start = std::chrono::high_resolution_clock::now();
         introSortCallStr();
         stop = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << endl << "Intro String: " << " " << duration.count() << endl;
         outputString << duration.count() <<endl;
-//        for(int j = 0; j < dataSetString.size(); j++){
-//            cout << dataSetString[j] << ' ';
-//        }
-//        start = std::chrono::high_resolution_clock::now();
-//        callIntroSortInt();
-//        stop = std::chrono::high_resolution_clock::now();
-//        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-//        cout << endl << "Intro Integer: " << " " << duration.count() << endl;
-//
-//        start = std::chrono::high_resolution_clock::now();
-//        callIntroSortStr();
-//        stop = std::chrono::high_resolution_clock::now();
-//        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-//        cout << endl << "Intro String: " << " " << duration.count() << endl;
-
     }
 }
 
 
-void sorting::insertionString() {  //vector <string> arrstr, int k
+void sorting::insertionString() {  //Insertion sort for string vector
 
     long k = dataSetString.size();
     int i, j;
@@ -257,13 +197,6 @@ void sorting::insertionString() {  //vector <string> arrstr, int k
         }
         dataSetString[j + 1] = key;
     }
-
-    int z;
-//    for (z = 0; z < k; z++)
-//        cout << dataSetString[z] << " ";
-//    cout << endl;
-
-
 }
 
 void sorting::insertionInt() {  //vector <string> arrstr, int k
@@ -281,27 +214,15 @@ void sorting::insertionInt() {  //vector <string> arrstr, int k
         }
         dataSetInt[j + 1] = key;
     }
-
-    int z;
-//    for (z = 0; z < k; z++)
-//        cout << dataSetInt[z] << " ";
-//    cout << endl;
-
 }
 
 //---------------
 
-void sorting::mergeString(){
+void sorting::mergeString(){ //merge sort call for string vector
     MergeSortVString( 0, dataSetString.size()-1);
-//    for (int i = 0; i < dataSetString.size(); ++i) {
-//        cout << dataSetString[i] << ' ';
-//    }
 }
-void sorting::mergeInt(){
+void sorting::mergeInt(){ //merge sort call for integer vector
     MergeSortVInt( 0, dataSetInt.size()-1);
-//    for (int i = 0; i < dataSetInt.size(); ++i) {
-//        cout << dataSetInt[i] << ' ';
-//    }
 }
 
 void sorting::MergeSortedIntervalsString(int s, int m, int e) {
@@ -309,13 +230,10 @@ void sorting::MergeSortedIntervalsString(int s, int m, int e) {
     // temp is used to temporary store the vector obtained by merging
     // elements from [s to m] and [m+1 to e] in v
     vector<string> temp;
-
     int i, j;
     i = s;
     j = m + 1;
-
     while (i <= m && j <= e) {
-
         if (dataSetString[i] <= dataSetString[j]) {
             temp.push_back(dataSetString[i]);
             ++i;
@@ -324,23 +242,17 @@ void sorting::MergeSortedIntervalsString(int s, int m, int e) {
             temp.push_back(dataSetString[j]);
             ++j;
         }
-
     }
-
     while (i <= m) {
         temp.push_back(dataSetString[i]);
         ++i;
     }
-
     while (j <= e) {
         temp.push_back(dataSetString[j]);
         ++j;
     }
-
     for (int i = s; i <= e; ++i)
         dataSetString[i] = temp[i - s];
-
-
 }
 void sorting::MergeSortedIntervalsInt(int s, int m, int e) {
 
@@ -353,7 +265,6 @@ void sorting::MergeSortedIntervalsInt(int s, int m, int e) {
     j = m + 1;
 
     while (i <= m && j <= e) {
-
         if (dataSetInt[i] <= dataSetInt[j]) {
             temp.push_back(dataSetInt[i]);
             ++i;
@@ -362,23 +273,17 @@ void sorting::MergeSortedIntervalsInt(int s, int m, int e) {
             temp.push_back(dataSetInt[j]);
             ++j;
         }
-
     }
-
     while (i <= m) {
         temp.push_back(dataSetInt[i]);
         ++i;
     }
-
     while (j <= e) {
         temp.push_back(dataSetInt[j]);
         ++j;
     }
-
     for (int i = s; i <= e; ++i)
         dataSetInt[i] = temp[i - s];
-
-
 }
 void sorting::MergeSortVString( int s, int e) {
     if (s < e) {
@@ -387,7 +292,6 @@ void sorting::MergeSortVString( int s, int e) {
         MergeSortVString(m + 1, e);
         MergeSortedIntervalsString( s, m, e);
     }
-
 }
 void sorting::MergeSortVInt( int s, int e) {
     if (s < e) {
@@ -396,7 +300,6 @@ void sorting::MergeSortVInt( int s, int e) {
         MergeSortVInt(m + 1, e);
         MergeSortedIntervalsInt( s, m, e);
     }
-
 }
 //---------------
 
@@ -417,10 +320,6 @@ void sorting::shellSortString()
             dataSetString[j] = temp;
         }
     }
-
-//    for (int i=0; i<n; i++)
-//        cout << dataSetString[i] << " ";
-
 }
 void sorting::shellSortInt()
 {
@@ -439,10 +338,6 @@ void sorting::shellSortInt()
             dataSetInt[j] = temp;
         }
     }
-
-//    for (int i=0; i<n; i++)
-//        cout << dataSetInt[i] << " ";
-
 }
 //------
 
@@ -529,16 +424,9 @@ int sorting::randomPartitionInt(vector <int>& v, int low, int high){
 }
 void sorting::randQuickSortCallString() {
     randQuickSortString(dataSetString, 0, dataSetString.size()-1);
-//    for(int i = 0; i < dataSetString.size(); i++){
-//        cout << dataSetString[i] << " ";
-//    }
-//    cout << endl;
 }
 void sorting::randQuickSortCallInt() {
     randQuickSortInt(dataSetInt, 0, dataSetInt.size()-1);
-//    for(int i = 0; i < dataSetInt.size(); i++){
-//        cout << dataSetInt[i] << " ";
-//    }
 }
 
 
@@ -552,26 +440,19 @@ void sorting::timSortInt()
     for (int i = 0; i < n; i+=RUN)
         instInt(i, min((i+RUN-1),
                     (n-1)));
-
     for (int size = RUN; size < n;
          size = 2*size)
     {
-
         for (int left = 0; left < n;
              left += 2*size)
         {
-
             int mid = left + size - 1;
             int right = min((left + 2*size - 1),
                             (n-1));
-
             if(mid < right)
                 MergeSortedIntervalsInt(left, mid, right);
         }
     }
-
-//    for (int i=0; i<n; i++)
-//        cout << dataSetInt[i] << " ";
 }
 
 void sorting::timSortString()
@@ -600,9 +481,6 @@ void sorting::timSortString()
                 MergeSortedIntervalsString(left, mid, right);
         }
     }
-//
-//    for (int i=0; i<n; i++)
-//        cout << dataSetString[i] << " ";
 }
 
 //-----
@@ -681,11 +559,7 @@ void sorting::InsertionSort(vector<int>&v){
         }
         v[j + 1] = key;
     }
-//
-//    int z;
-//    for (z = 0; z < k; z++)
-//        cout << v[z] << " ";
-//    cout << endl;
+
 }
 int sorting::partitionStr(vector<string> v, int low, int high){
     string pivot = v[high];
@@ -762,342 +636,4 @@ void sorting::InsertionSortStr(vector<string>&v){
         }
         v[j + 1] = key;
     }
-//
-//    int z;
-//    for (z = 0; z < k; z++)
-//        cout << v[z] << " ";
-//    cout << endl;
 }
-
-
-
-//void sorting::callIntroSortInt(){
-//    int n = dataSetInt.size();
-//    int arr[n];
-//    for (int i = 0; i < dataSetInt.size(); i++){
-//        arr[i] = dataSetInt[i];
-//    }
-//
-//    IntrosortInt(arr, arr, arr + n - 1);
-//
-//    for (int u = 0; u < n; u++){
-//        cout << arr[u] << " ";
-//    }
-//}
-//
-//void sorting::swapValueInt(int* a, int* b)
-//{
-//    int* temp = a;
-//    a = b;
-//    b = temp;
-//    return;
-//}
-//
-//void sorting::InsertionSortInt(int arr[], int* begin, int* end)
-//{
-//    int left = begin - arr;
-//    int right = end - arr;
-//
-//    for (int i = left + 1; i <= right; i++) {
-//        int key = arr[i];
-//        int j = i - 1;
-//
-//        while (j >= left && arr[j] > key) {
-//            arr[j + 1] = arr[j];
-//            j = j - 1;
-//        }
-//        arr[j + 1] = key;
-//    }
-//
-//    return;
-//}
-//
-//
-//int* sorting::PartitionInt(int arr[], int low, int high)
-//{
-//    int pivot = arr[high];
-//    int i = (low - 1);
-//
-//    for (int j = low; j <= high - 1; j++) {
-//
-//        if (arr[j] <= pivot) {
-//            i++;
-//
-//            swap(arr[i], arr[j]);
-//        }
-//    }
-//    swap(arr[i + 1], arr[high]);
-//    return (arr + i + 1);
-//}
-//
-//
-//int* sorting::MedianOfThreeInt(int* a, int* b, int* c)
-//{
-//    if (*a < *b && *b < *c)
-//        return (b);
-//
-//    if (*a < *c && *c <= *b)
-//        return (c);
-//
-//    if (*b <= *a && *a < *c)
-//        return (a);
-//
-//    if (*b < *c && *c <= *a)
-//        return (c);
-//
-//    if (*c <= *a && *a < *b)
-//        return (a);
-//
-//    if (*c <= *b && *b <= *a)
-//        return (b);
-//}
-//
-//
-//void sorting::IntrosortUtilInt(int arr[], int* begin, int* end, int depthLimit)
-//{
-//    int size = end - begin;
-//
-//    if (size < 16) {
-//        InsertionSortInt(arr, begin, end);
-//        return;
-//    }
-//
-//    if (depthLimit == 0) {
-//        heapSortInt(begin, end+1);
-//        return;
-//    }
-//
-//    int* pivot = MedianOfThreeInt(begin, begin + size / 2, end);
-//
-//    swapValueInt(pivot, end);
-//
-//    int* partitionPoint = PartitionInt(arr, begin - arr, end - arr);
-//    IntrosortUtilInt(arr, begin, partitionPoint - 1,depthLimit - 1);
-//    IntrosortUtilInt(arr, partitionPoint + 1, end,depthLimit - 1);
-//
-//    return;
-//}
-//
-//
-//void sorting::IntrosortInt(int arr[], int* begin, int* end)
-//{
-//    int depthLimit = 2 * log(end - begin);
-//
-//    IntrosortUtilInt(arr, begin, end, depthLimit);
-//
-//    return;
-//}
-//
-//
-//void sorting::printArrayInt(int arr[], int n)
-//{
-//    for (int i = 0; i < n; i++)
-//        cout << arr[i] << " \n"[i + 1 == n];
-//}
-//
-//void sorting::heapMakerInt(int n, int i)
-//{
-//    int largest = i;
-//    int l = 2 * i + 1;
-//    int r = 2 * i + 2;
-//
-//    if (l < n && dataSetInt[l] > dataSetInt[largest])
-//        largest = l;
-//
-//    if (r < n && dataSetInt[r] > dataSetInt[largest])
-//        largest = r;
-//
-//    if (largest != i) {
-//        swap(dataSetInt[i], dataSetInt[largest]);
-//
-//        heapMakerInt(n, largest);
-//    }
-//}
-//
-//void sorting::heapSortInt(int* begin, int*end)
-//{
-//    int n = dataSetInt.size();
-//    int x = *begin;
-//
-//
-//    for (int i = n / 2 - 1; i >= 0; i--)
-//        heapMakerInt(x, i);
-//
-//    for (int i = n - 1; i > 0; i--) {
-//        swap(dataSetInt[0], dataSetInt[i]);
-//
-//        heapMakerInt(i, 0);
-//    }
-//}
-//
-////-----
-//void sorting::callIntroSortStr(){
-//    int n = dataSetString.size();
-//    string arr[n];
-//    for (int i = 0; i < dataSetString.size(); i++){
-//        arr[i] = dataSetString[i];
-//    }
-//
-//    IntrosortStr(arr, arr, arr + n - 1);
-//
-//    for (int u = 0; u < n; u++){
-//        cout << arr[u] << " ";
-//    }
-//}
-//
-//
-//
-//void sorting::swapValueStr(string* a, string* b)
-//{
-//    string* temp = a;
-//    a = b;
-//    b = temp;
-//    return;
-//}
-//
-///* Function to sort an array using insertion sort*/
-//void sorting::InsertionSortStr(string arr[], string* begin, string* end)
-//{
-//
-//    int left = begin - arr;
-//    int right = end - arr;
-//
-//    for (int i = left + 1; i <= right; i++) {
-//        string key = arr[i];
-//        int j = i - 1;
-//
-//
-//        while (j >= left && arr[j] > key) {
-//            arr[j + 1] = arr[j];
-//            j = j - 1;
-//        }
-//        arr[j + 1] = key;
-//    }
-//
-//    return;
-//}
-//
-//// A function to partition the array and return
-//// the partition point
-//string* sorting::PartitionStr(string arr[], int low, int high)
-//{
-//    string pivot = arr[high];
-//    int i = (low - 1);
-//
-//    for (int j = low; j <= high - 1; j++) {
-//
-//        if (arr[j] <= pivot) {
-//            i++;
-//
-//            swap(arr[i], arr[j]);
-//        }
-//    }
-//    swap(arr[i + 1], arr[high]);
-//    return (arr + i + 1);
-//}
-//
-//
-//string* sorting::MedianOfThreeStr(string* a, string* b, string* c)
-//{
-//    if (*a < *b && *b < *c)
-//        return (b);
-//
-//    if (*a < *c && *c <= *b)
-//        return (c);
-//
-//    if (*b <= *a && *a < *c)
-//        return (a);
-//
-//    if (*b < *c && *c <= *a)
-//        return (c);
-//
-//    if (*c <= *a && *a < *b)
-//        return (a);
-//
-//    if (*c <= *b && *b <= *a)
-//        return (b);
-//}
-//
-//// A Utility function to perform intro sort
-//void sorting::IntrosortUtilStr(string arr[], string* begin, string* end, int depthLimit)
-//{
-//    // Count the number of elements
-//    int size = end - begin;
-//
-//    // If partition size is low then do insertion sort
-//    if (size < 16) {
-//        InsertionSortStr(arr, begin, end);
-//        return;
-//    }
-//
-//    // If the depth is zero use heapsort
-//    if (depthLimit == 0) {
-//        heapSortStr(begin, end+1);
-//        return;
-//    }
-//
-//    // Else use a median-of-three concept to
-//    // find a good pivot
-//    string* pivot = MedianOfThreeStr(begin, begin + size / 2, end);
-//
-//    // Swap the values pointed by the two pointers
-//    swapValueStr(pivot, end);
-//
-//    // Perform Quick Sort
-//    string* partitionPoint = PartitionStr(arr, begin - arr, end - arr);
-//    IntrosortUtilStr(arr, begin, partitionPoint - 1, depthLimit - 1);
-//    IntrosortUtilStr(arr, partitionPoint + 1, end, depthLimit - 1);
-//
-//    return;
-//}
-//
-//void sorting::IntrosortStr(string arr[], string* begin, string* end)
-//{
-//    int depthLimit = 2 * log(end - begin);
-//
-//    IntrosortUtilStr(arr, begin, end, depthLimit);
-//
-//    return;
-//}
-//
-//// A utility function ot print an array of size n
-//void sorting::printArrayStr(int n)
-//{
-//    for (int i = 0; i < n; i++)
-//        cout << dataSetString[i] << " \n"[i + 1 == n];
-//}
-//
-//void sorting::heapMakerStr(string n, int i)
-//{
-//    int largest = i;
-//    int l = 2 * i + 1;
-//    int r = 2 * i + 2;
-//
-//    if (l < stoi(n) && dataSetString[l] > dataSetString[largest])
-//        largest = l;
-//
-//    if (r < stoi(n) && dataSetString[r] > dataSetString[largest])
-//        largest = r;
-//
-//    if (largest != i) {
-//        swap(dataSetString[i], dataSetString[largest]);
-//
-//        heapMakerStr(n, largest);
-//    }
-//}
-//
-//void sorting::heapSortStr(string* begin, string* end)
-//{
-//    int n = dataSetString.size();
-//    string x = *begin;
-//
-//
-//    for (int i = n / 2 - 1; i >= 0; i--)
-//        heapMakerStr(x, i);
-//
-//    for (int i = n - 1; i > 0; i--) {
-//        swap(dataSetString[0], dataSetString[i]);
-//
-//        heapMakerStr(to_string(i), 0);
-//    }
-//}
